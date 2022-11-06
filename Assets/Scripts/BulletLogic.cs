@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-
+    [SerializeField] float bulletSpeed;
+    [SerializeField] float playerBulletSpreadMin;
+    [SerializeField] float playerBulletSpreadMax;
     float playerX;
     float playerY;
     float cameraX;
@@ -13,10 +15,10 @@ public class BulletLogic : MonoBehaviour
     float cameraW;
     Camera cam;
 
-    [SerializeField] float bulletSpeed;
+    
 
     Rigidbody2D rb;
-
+    
 
 
     
@@ -34,11 +36,7 @@ public class BulletLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Vector2 bulletVelocity = this.transform.position * bulletSpeed * Time.deltaTime;
+        Vector2 bulletVelocity = new Vector2(Random.Range(playerBulletSpreadMin, playerBulletSpreadMax), transform.position.y * bulletSpeed);
         rb.velocity = bulletVelocity;
-
-
-
     }
 }

@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float moveSpeedMultiplier;
     [SerializeField] float timeBetweenShots;
-    [SerializeField] float bulletSpeed;
     [SerializeField] float bulletDestroyTimer;
+    [SerializeField] float bulletSpawnDistance;
     [SerializeField] bool canShoot;
 
     private Quaternion bulletDirection;
@@ -34,10 +34,10 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // Get direction of the angle between mousePosition and player
-        Vector2 direction = mousePosition - transform.position;
+        Vector2 playerDirection = mousePosition - transform.position;
 
         // Get the angle between the "forward position" of the object (up in the case of this sprite), and direction (angle between mousePosition and player). Signed Angle instead of reg. Angle because it allows for full 360* of rotation, reg Angle only 180
-        float angle = Vector2.SignedAngle(Vector2.up, direction);
+        float angle = Vector2.SignedAngle(Vector2.up, playerDirection);
 
         // Actually change the transform to rotate, locking x and y because that can cause sprite to disappear.
         transform.eulerAngles = new Vector3(0, 0, angle);
@@ -50,16 +50,18 @@ public class PlayerController : MonoBehaviour
         movement *= Time.deltaTime;
 
 
-        transform.Translate(movement);
+        transform.Translate(movement, Space.World);
 
         // Shooting
 
-        if (Input.GetButton("Shoot"))
+        if (Input.GetButtonDown("Shoot"))
         {
             if (canShoot)
             {
-                
-                CreateBullet(mousePosition, direction);
+
+                /*Vector2 initBulletSpawn = transform.position + transform.forward * bulletSpawnDistance;
+                Quaternion currentPlayerRot = transform.rotation;
+                CreateBullet(playerDirection, initBulletSpawn, currentPlayerRot);*/
                 
             }
 
@@ -80,11 +82,9 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
-    private void CreateBullet(Vector3 mousePos, Vector2 angleDirection)
+    private void CreateBullet(Vector2 angleDirection, Vector2 bulletSpawnLoc, Quaternion playerRotationForBullet)
     {
-        angleDirection.Normalize();
-        float bulletAngle = Vector2.SignedAngle(Vector2.up, angleDirection);
-        GameObject bulletClone = Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0, 0, bulletAngle)));
+        GameObject bulletClone = Instantiate(bullet, bulletSpawnLoc, playerRotationForBullet);
         Destroy(bulletClone, bulletDestroyTimer);
     }
 }
