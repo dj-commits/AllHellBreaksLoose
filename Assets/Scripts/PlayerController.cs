@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
             {
 
                 CreateBullet();
+                StartCoroutine(shootWaitTimer());
                 
             }
 
@@ -86,17 +87,18 @@ public class PlayerController : MonoBehaviour
     private void CreateBullet()
     {
 
-        Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-        Vector2 myPos = gunTransform.position;
-        Vector2 direction = target - myPos;
-        direction.Normalize();
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        Vector2 gunPos = gunTransform.position;
+        Vector2 gunDirection = mousePos - gunPos;
+        gunDirection.Normalize();
+        gunDirection += (Vector2)gunTransform.up;
 
-        float bulletAngle = Vector2.SignedAngle(Vector2.up, direction);
+        float bulletAngle = Vector2.SignedAngle(Vector2.up, gunDirection);
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle));
 
-        GameObject bulletClone = Instantiate(bullet, direction, rotation);
+        GameObject bulletClone = Instantiate(bullet, gunPos + gunDirection, rotation);
 
-        bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
+        bulletClone.GetComponent<Rigidbody2D>().velocity = gunDirection * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
         
         
         
