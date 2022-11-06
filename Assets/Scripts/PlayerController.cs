@@ -88,15 +88,13 @@ public class PlayerController : MonoBehaviour
 
         Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
         Vector2 myPos = gunTransform.position;
-        Quaternion gunRot = gunTransform.rotation;
-        myPos.y *= bulletSpawnDistance;
         Vector2 direction = target - myPos;
         direction.Normalize();
 
         float bulletAngle = Vector2.SignedAngle(Vector2.up, direction);
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle));
 
-        GameObject bulletClone = Instantiate(bullet, gunTransform.up, gunRot);
+        GameObject bulletClone = Instantiate(bullet, direction, rotation);
 
         bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
         
