@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float bulletDestroyTimer;
     [SerializeField] float bulletSpawnDistance;
     [SerializeField] bool canShoot;
+    Transform gunTransform;
 
     private Quaternion bulletDirection;
     [SerializeField] GameObject bullet;
@@ -18,11 +19,13 @@ public class PlayerController : MonoBehaviour
 
     BulletLogic bulletLogic;
     private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         canShoot = true;
+        gunTransform = GameObject.Find("gun").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -34,13 +37,13 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // Get direction of the angle between mousePosition and player
-        Vector2 playerDirection = mousePosition - transform.position;
+        Vector2 gunDirection = mousePosition - gunTransform.transform.position;
 
         // Get the angle between the "forward position" of the object (up in the case of this sprite), and direction (angle between mousePosition and player). Signed Angle instead of reg. Angle because it allows for full 360* of rotation, reg Angle only 180
-        float angle = Vector2.SignedAngle(Vector2.up, playerDirection);
+        float angle = Vector2.SignedAngle(Vector2.up, gunDirection);
 
         // Actually change the transform to rotate, locking x and y because that can cause sprite to disappear.
-        transform.eulerAngles = new Vector3(0, 0, angle);
+        gunTransform.transform.eulerAngles = new Vector3(0, 0, angle);
 
         // Movement
         float inputX = Input.GetAxis("Horizontal");
@@ -54,14 +57,12 @@ public class PlayerController : MonoBehaviour
 
         // Shooting
 
-        if (Input.GetButtonDown("Shoot"))
+        if (Input.GetButton("Shoot"))
         {
             if (canShoot)
             {
 
-                /*Vector2 initBulletSpawn = transform.position + transform.forward * bulletSpawnDistance;
-                Quaternion currentPlayerRot = transform.rotation;
-                CreateBullet(playerDirection, initBulletSpawn, currentPlayerRot);*/
+                CreateBullet();
                 
             }
 
@@ -82,9 +83,24 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
-    private void CreateBullet(Vector2 angleDirection, Vector2 bulletSpawnLoc, Quaternion playerRotationForBullet)
+    private void CreateBullet()
     {
-        GameObject bulletClone = Instantiate(bullet, bulletSpawnLoc, playerRotationForBullet);
-        Destroy(bulletClone, bulletDestroyTimer);
+
+        Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        Vector2 myPos = gunTransform.position;
+        Quaternion gunRot = gunTransform.rotation;
+        myPos.y *= bulletSpawnDistance;
+        Vector2 direction = target - myPos;
+        direction.Normalize();
+
+        float bulletAngle = Vector2.SignedAngle(Vector2.up, direction);
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle));
+
+        GameObject bulletClone = Instantiate(bullet, gunTransform.up, gunRot);
+
+        bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
+        
+        
+        
     }
 }
