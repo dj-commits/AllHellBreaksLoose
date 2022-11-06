@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
             {
 
                 CreateBullet();
+                canShoot = false;
                 StartCoroutine(shootWaitTimer());
                 
             }
