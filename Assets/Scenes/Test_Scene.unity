@@ -452,12 +452,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1293298148877973447, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: enemyHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1293298148877973496, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1293298148877973496, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+--- !u!1 &608182747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1293298148877973496, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+  m_PrefabInstance: {fileID: 520847537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &608182751
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608182747}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.030142665}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.96}
+    newSize: {x: 0.64, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.9147861}
+  m_EdgeRadius: 0
 --- !u!1 &730530346
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +771,10 @@ PrefabInstance:
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: bulletSpeed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: playerHealth
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: timeBetweenDash

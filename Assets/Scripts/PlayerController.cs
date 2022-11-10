@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     private float moveSpeedMultiplier;
     [SerializeField] float dashSpeed;
+    [SerializeField] float playerHealth;
 
     // Timer vars
     [SerializeField] float timeBetweenShots;
@@ -47,6 +48,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check for playerDeath
+        if (playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         // player sprite rotation around Mouse
 
         // Get mouse position (in Vector 3)
@@ -132,7 +139,10 @@ public class PlayerController : MonoBehaviour
 
         bulletClone.GetComponent<Rigidbody2D>().velocity = gunDirection * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
         
-        
-        
+    }
+
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
     }
 }
