@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Movement vars
     [SerializeField] float moveSpeed;
-    [SerializeField] float moveSpeedMultiplier;
-    [SerializeField] float timeBetweenShots;
-    [SerializeField] float bulletDestroyTimer;
-    [SerializeField] float bulletSpawnDistance;
-    [SerializeField] bool canShoot;
-    Transform gunTransform;
+    private float moveSpeedMultiplier;
+    [SerializeField] float dashSpeed;
 
-    private Quaternion bulletDirection;
+    // Timer vars
+    [SerializeField] float timeBetweenShots;
+    [SerializeField] float timeBetweenDash;
+
+    // Bullet vars
+    [SerializeField] float bulletSpawnDistance;
+
+    // Booleans
+    [SerializeField] bool canShoot;
+    [SerializeField] bool canDash;
+
+    // Components
+    Transform gunTransform;
     [SerializeField] GameObject bullet;
+    private Quaternion bulletDirection;
+    private Rigidbody2D rb;
+
+    // Vectors
     Vector2 playerPosition;
     Vector3 mousePosition;
 
+    // Scripts
     BulletLogic bulletLogic;
-    private Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         canShoot = true;
+        canDash = true;
         gunTransform = GameObject.Find("gun").GetComponent<Transform>();
+        moveSpeedMultiplier = 1f;
     }
 
     // Update is called once per frame
@@ -46,10 +62,18 @@ public class PlayerController : MonoBehaviour
         gunTransform.transform.eulerAngles = new Vector3(0, 0, angle);
 
         // Movement
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            moveSpeedMultiplier = dashSpeed;
+            canDash = false;
+            StartCoroutine(dashWaitTimer());
+        }
+
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(inputX * moveSpeed, inputY * moveSpeed);
+        Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
         movement *= Time.deltaTime;
 
 
@@ -83,6 +107,13 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenShots);
         canShoot = true;
+    }
+
+    IEnumerator dashWaitTimer()
+    {
+        yield return new WaitForSeconds(timeBetweenDash);
+        moveSpeedMultiplier = 1;
+        canDash = true;
     }
 
     private void CreateBullet()
