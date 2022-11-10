@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
 
     // Timer vars
     [SerializeField] float timeBetweenShots;
-    [SerializeField] float timeBetweenDash;
+    [SerializeField] float dashTime;
+    [SerializeField] float canDashTime;
 
     // Bullet vars
     [SerializeField] float bulletSpawnDistance;
@@ -74,7 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeedMultiplier = dashSpeed;
             canDash = false;
-            StartCoroutine(dashWaitTimer());
+            StartCoroutine(setDashTimer());
+            StartCoroutine(setCanDashTimer());
         }
 
         float inputX = Input.GetAxis("Horizontal");
@@ -116,10 +118,15 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
-    IEnumerator dashWaitTimer()
+    IEnumerator setDashTimer()
     {
-        yield return new WaitForSeconds(timeBetweenDash);
+        yield return new WaitForSeconds(dashTime);
         moveSpeedMultiplier = 1;
+    }
+
+    IEnumerator setCanDashTimer()
+    {
+        yield return new WaitForSeconds(canDashTime);
         canDash = true;
     }
 
