@@ -13,12 +13,8 @@ public class Gun : MonoBehaviour
     [SerializeField]
     bool canShoot;
 
-    [SerializeField]
-    private ArrayList bullets;
-
     void Start()
     {
-        bullets = new ArrayList();
         canShoot = true;
     }
 
@@ -60,8 +56,6 @@ public class Gun : MonoBehaviour
         GameObject bulletClone = Instantiate(bullet, gunPos + gunDirection, rotation);
 
         bulletClone.GetComponent<Rigidbody2D>().velocity = gunDirection * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
-
-        bullets.Add(bulletClone);
 
     }
 

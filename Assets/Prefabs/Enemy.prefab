@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMovementSpeed: 3
   enemyHealth: 0
+  powerUp: {fileID: 87330446495960574, guid: fa8bb5adab3cdcd4580c4a67c6981537, type: 3}

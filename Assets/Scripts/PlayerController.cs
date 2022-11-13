@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     // Booleans
     [SerializeField] bool canDash;
 
+    [SerializeField]
+    GameObject powerUp;
+
     // Components
     private Rigidbody2D rb;
 
@@ -26,7 +29,14 @@ public class PlayerController : MonoBehaviour
 
     Gun gun;
 
-    const float DEFAULT_MOVE_SPEED = 1;
+    [SerializeField]
+    const float DEFAULT_MOVE_SPEED = 1f;
+    [SerializeField]
+    const float DEFAULT_DASH_SPEED = 3f;
+    [SerializeField]
+    const float DEFAULT_CAN_DASH_TIME = 2f;
+    [SerializeField]
+    const float DEFAULT_DASH_TIME = 0.1f;
 
 
     // Start is called before the first frame update
@@ -96,4 +106,48 @@ public class PlayerController : MonoBehaviour
     {
         playerHealth -= damage;
     }
+
+    public void setPowerup(GameObject powerUp)
+    {
+        this.powerUp = powerUp;
+    }
+
+    public void setCanDashTime(float canDashTime)
+    {
+        if (canDashTime < 0)
+        {
+            canDashTime = DEFAULT_CAN_DASH_TIME;
+        }
+        this.canDashTime = canDashTime;
+        
+    }
+
+    public void setDashSpeed(float dashSpeed)
+    {
+        if (dashSpeed < 0)
+        {
+            dashSpeed = DEFAULT_DASH_SPEED;
+        }
+            
+        this.dashSpeed = dashSpeed;
+    }
+
+    public void setMoveSpeed(float moveSpeed)
+    {
+        if (moveSpeed < 0)
+        {
+            moveSpeed = DEFAULT_MOVE_SPEED;
+        }
+        this.moveSpeed = moveSpeed;
+    }
+
+    public void setDashTime(float dashTime)
+    {
+        if(dashTime < 0)
+        {
+            dashTime = DEFAULT_DASH_TIME;
+        }
+        this.dashTime = dashTime;
+    }
+
 }

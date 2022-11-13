@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7f425be00974b4382c375478f4a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 35
+  bulletSpeed: 20
   playerBulletSpreadMin: 0.15
   playerBulletSpreadMax: 5
   bulletDamage: 10
   bulletLoops: 0
   bulletDestroyTimer: 1
-  destroyOnLoopNumberCounter: 60
+  destroyOnLoopNumberCounter: 4
   canHurtPlayer: 0
   canHurtEnemy: 0
   bulletOutOfView: 0
