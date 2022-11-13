@@ -761,6 +761,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: dashTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: dashSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -773,12 +777,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: canDashTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: playerHealth
-      value: 50
+      value: 500000
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: timeBetweenDash
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: timeBetweenShots

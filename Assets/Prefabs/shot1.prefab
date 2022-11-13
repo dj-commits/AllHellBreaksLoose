@@ -152,4 +152,7 @@ MonoBehaviour:
   bulletDamage: 10
   bulletLoops: 0
   bulletDestroyTimer: 1
-  destroyOnLoopNumberCounter: 4
+  destroyOnLoopNumberCounter: 60
+  canHurtPlayer: 0
+  canHurtEnemy: 0
+  bulletOutOfView: 0
