@@ -27,18 +27,12 @@ public class Powerup : MonoBehaviour
     public virtual void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        playerLayer = LayerMask.NameToLayer("Player");
-        bulletLayer = LayerMask.NameToLayer("Bullet");
-        enemyLayer = LayerMask.NameToLayer("Enemy");
-        powerupLayer = LayerMask.NameToLayer("Powerup");
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        Physics2D.IgnoreLayerCollision(powerupLayer, playerLayer, false);
-        Physics2D.IgnoreLayerCollision(powerupLayer, bulletLayer, true);
-        Physics2D.IgnoreLayerCollision(powerupLayer, enemyLayer, true);
     }
 
     public virtual void ActivatePower()
@@ -49,6 +43,7 @@ public class Powerup : MonoBehaviour
     public virtual void PickupPower()
     {
         Physics2D.IgnoreLayerCollision(powerupLayer, playerLayer, true);
+        spriteRenderer.enabled = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)

@@ -6,7 +6,8 @@ using Cinemachine;
 public class BulletLogic : MonoBehaviour
 {
     // Layer variables
-    private int bulletLayer;
+    private int initBulletLayer;
+    private int secondBulletLayer;
     private int enemyLayer;
     private int playerLayer;
     // Bullet variables
@@ -35,19 +36,22 @@ public class BulletLogic : MonoBehaviour
     Camera cam;
     EnemyLogic enemyLogic;
     PlayerController playerController;
+    BoxCollider2D boxCollider2D;
 
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canHurtPlayer = false;
         canHurtEnemy = true;
         camHeight = 2f * cam.orthographicSize;
         camWidth = (camHeight * cam.aspect) / 2;
-        bulletLayer = LayerMask.NameToLayer("Bullet");
+        initBulletLayer = LayerMask.NameToLayer("initBullet");
+        secondBulletLayer = LayerMask.NameToLayer("secondBullet");
         enemyLayer = LayerMask.NameToLayer("Enemy");
         playerLayer = LayerMask.NameToLayer("Player");
     }
@@ -65,27 +69,13 @@ public class BulletLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (bulletLoops > 0)
+        if (bulletLoops >= 0)
         {
             canHurtEnemy = false;
             canHurtPlayer = true;
         }
 
-        if (canHurtEnemy == false)
-        {
-            Physics2D.IgnoreLayerCollision(bulletLayer, enemyLayer, true);
-        } else
-        {
-            Physics2D.IgnoreLayerCollision(bulletLayer, enemyLayer, false);
-        }
 
-        if (canHurtPlayer == false)
-        {
-            Physics2D.IgnoreLayerCollision(bulletLayer, playerLayer, true);
-        } else
-        {
-            Physics2D.IgnoreLayerCollision(bulletLayer, playerLayer, false);
-        }
 
         // Check position of bullet
         Vector3 bulletPos = this.transform.position;
@@ -130,10 +120,18 @@ public class BulletLogic : MonoBehaviour
         }
         
     }
+
     public void SetPosition(Vector3 bulletPosition) 
     {
+        if (gameObject.layer != secondBulletLayer)
+        {
+            gameObject.layer = secondBulletLayer;
+        }
+
         this.transform.position = bulletPosition;
         this.bulletOutOfView = false;
+        
+
     }
 
     public void FlipBullet(Vector3 bulletPos, Vector3 bulletView, int switchCase)
@@ -212,29 +210,29 @@ public class BulletLogic : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void SetIgnoreCollision(BoxCollider2D thisCollider, Collider2D otherCollider, bool disabled)
     {
-     if (canHurtEnemy)
-        {
-            if (other.gameObject.tag == "Enemy")
-            {
-                enemyLogic = other.gameObject.GetComponent<EnemyLogic>();
-                enemyLogic.TakeDamage(bulletDamage);
-                Destroy(gameObject);
-
-            }
-        }
-
-     if (canHurtPlayer)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                playerController = other.gameObject.GetComponent<PlayerController>();
-                playerController.TakeDamage(bulletDamage);
-                Destroy(gameObject);
-
-            }
-        }
+        Physics2D.IgnoreCollision(thisCollider, otherCollider, disabled);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            enemyLogic = other.gameObject.GetComponent<EnemyLogic>();
+            enemyLogic.TakeDamage(bulletDamage);
+            Destroy(gameObject);
+
+        }
+
+
+        if (other.gameObject.tag == "Player")
+        {
+            playerController = other.gameObject.GetComponent<PlayerController>();
+            playerController.TakeDamage(bulletDamage);
+            Destroy(gameObject);
+
+        }
+
+    }
 }

@@ -7,10 +7,13 @@ public class DashPowerup : Powerup
     [SerializeField]
     float canDashTime;
 
+    BoxCollider2D boxCollider2D;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
     }
 
     public override void Update()
@@ -31,8 +34,9 @@ public class DashPowerup : Powerup
     {
         base.PickupPower();
         Debug.Log("Dash Power Picked Up");
-        //this.GetComponent<SpriteRenderer>().enabled = false;
-        this.GetComponent<BoxCollider2D>().enabled = false;
+        //Moved this to the base class - this.GetComponent<SpriteRenderer>().enabled = false;
+        // Should we get the component off of the base class of the sub-class?
+        boxCollider2D.enabled = false;
         this.pickedUp = true;
         this.getPlayerController().setPowerup(this.gameObject);
 
