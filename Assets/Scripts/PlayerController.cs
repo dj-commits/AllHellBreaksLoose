@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool canDash;
 
     [SerializeField]
-    GameObject powerUp;
+    public GameObject powerUp;
 
     // Components
     private Rigidbody2D rb;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         gun = GameObject.Find("gun").GetComponent<Gun>();
         
         rb = GetComponent<Rigidbody2D>();
-        canDash = true;
+        canDash = false;
         moveSpeedMultiplier = 1f;
     }
 
@@ -81,6 +81,18 @@ public class PlayerController : MonoBehaviour
             gun.Shoot();
         }
 
+        if (Input.GetButton("Interact"))
+        {
+            if (this.powerUp != null)
+            {
+
+                if (powerUp.name.ToUpper().Contains("DASH"))
+                {
+                    powerUp.GetComponent<DashPowerup>().ActivatePower();
+                }
+            }
+        }
+
     }
 
     private void FixedUpdate()
@@ -110,6 +122,11 @@ public class PlayerController : MonoBehaviour
     public void setPowerup(GameObject powerUp)
     {
         this.powerUp = powerUp;
+    }
+
+    public void setCanDash(bool canDash)
+    {
+        this.canDash = canDash;
     }
 
     public void setCanDashTime(float canDashTime)

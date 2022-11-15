@@ -149,5 +149,5 @@ MonoBehaviour:
   powerupTime: 5
   pickedUp: 0
   activated: 0
-  lifeTimer: 0
+  lifeTimer: 5
   canDashTime: 0.5

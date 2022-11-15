@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    private int playerLayer;
     private int bulletLayer;
     private int enemyLayer;
-    private int powerupLayer;
 
     [SerializeField]
     float powerupTime;
+
+    [SerializeField]
+    public string powerUpType;
 
     // Components
     Rigidbody2D rb;
@@ -20,7 +21,7 @@ public class Powerup : MonoBehaviour
     PlayerController playerController;
 
     public bool pickedUp;
-    public bool activated;
+    public bool isActive;
     public float lifeTimer;
 
     // Start is called before the first frame update
@@ -37,13 +38,19 @@ public class Powerup : MonoBehaviour
 
     public virtual void ActivatePower()
     {
+        this.isActive = true;
+        
         
     }
 
     public virtual void PickupPower()
     {
-        Physics2D.IgnoreLayerCollision(powerupLayer, playerLayer, true);
         spriteRenderer.enabled = false;
+    }
+
+    public virtual void DeactivatePower()
+    {
+        this.isActive = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -72,7 +79,7 @@ public class Powerup : MonoBehaviour
     public IEnumerator setPowerupTime()
     {
         yield return new WaitForSeconds(powerupTime);
-        this.getPlayerController().setCanDashTime(-1);
+        DeactivatePower();
         Destroy(gameObject);
     }
 }

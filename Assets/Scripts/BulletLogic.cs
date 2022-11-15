@@ -26,8 +26,6 @@ public class BulletLogic : MonoBehaviour
     [SerializeField] int destroyOnLoopNumberCounter;
 
     // Booleans
-    [SerializeField] bool canHurtPlayer;
-    [SerializeField] bool canHurtEnemy;
     [SerializeField] bool bulletOutOfView;
 
     // Components
@@ -46,8 +44,6 @@ public class BulletLogic : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        canHurtPlayer = false;
-        canHurtEnemy = true;
         camHeight = 2f * cam.orthographicSize;
         camWidth = (camHeight * cam.aspect) / 2;
         initBulletLayer = LayerMask.NameToLayer("initBullet");
@@ -68,14 +64,6 @@ public class BulletLogic : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (bulletLoops >= 0)
-        {
-            canHurtEnemy = false;
-            canHurtPlayer = true;
-        }
-
-
 
         // Check position of bullet
         Vector3 bulletPos = this.transform.position;

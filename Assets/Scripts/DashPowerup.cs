@@ -14,6 +14,7 @@ public class DashPowerup : Powerup
     {
         base.Start();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+        this.powerUpType = "Dash";
     }
 
     public override void Update()
@@ -24,23 +25,27 @@ public class DashPowerup : Powerup
     public override void ActivatePower()
     {
         base.ActivatePower();
-        
+        this.getPlayerController().setCanDash(true);
         this.getPlayerController().setCanDashTime(canDashTime);
         this.getPlayerController().setPowerup(null);
         StartCoroutine(setPowerupTime());
+
     }
 
     public override void PickupPower()
     {
-        base.PickupPower();
-        Debug.Log("Dash Power Picked Up");
-        //Moved this to the base class - this.GetComponent<SpriteRenderer>().enabled = false;
-        // Should we get the component off of the base class of the sub-class?
-        boxCollider2D.enabled = false;
-        this.pickedUp = true;
-        this.getPlayerController().setPowerup(this.gameObject);
+        if (this.pickedUp == false)
+        {
+            base.PickupPower();
+            boxCollider2D.enabled = false;
+            this.pickedUp = true;
+            this.getPlayerController().setPowerup(this.gameObject);
+        }
+    }
 
-        //TO-DO create an activate power button started via playerController
-        ActivatePower();
+    public override void DeactivatePower()
+    {
+        base.DeactivatePower();
+        this.getPlayerController().setCanDash(false);
     }
 }
