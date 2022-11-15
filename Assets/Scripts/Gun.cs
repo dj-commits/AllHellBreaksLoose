@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
         // Get direction of the angle between mousePosition and player
         Vector2 gunDirection = mousePosition - this.transform.position;
         // Get the angle between the "forward position" of the object (up in the case of this sprite), and direction (angle between mousePosition and player). Signed Angle instead of reg. Angle because it allows for full 360* of rotation, reg Angle only 180
-        float angle = Vector2.SignedAngle(Vector2.up, gunDirection);
+        float angle = Vector2.SignedAngle(Vector2.right, gunDirection);
         // Actually change the transform to rotate, locking x and y because that can cause sprite to disappear.
         this.transform.eulerAngles = new Vector3(0, 0, angle);
     }
@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
         Vector2 gunPos = this.transform.position;
         Vector2 gunDirection = mousePos - gunPos;
         gunDirection.Normalize();
-        gunDirection += (Vector2)this.transform.up;
+        //gunDirection += (Vector2)this.transform.right;
 
         float bulletAngle = Vector2.SignedAngle(Vector2.up, gunDirection);
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle));

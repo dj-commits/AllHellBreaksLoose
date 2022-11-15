@@ -73,14 +73,16 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
         movement *= Time.deltaTime;
 
-
+        
         transform.Translate(movement, Space.World);
 
+        // Shooting
         if (Input.GetButton("Shoot"))
         {
             gun.Shoot();
         }
 
+        // Use powerup
         if (Input.GetButton("Interact"))
         {
             if (this.powerUp != null)

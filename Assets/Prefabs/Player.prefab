@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 742910792799440459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.63, y: 0.89, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 68ec068104e5c6044bf73741c0e03c13, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: cec56db196d18b84d89c981fbacff324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,18 +121,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.014541298, y: -0.011086389}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96, y: 0.96}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.96}
+  m_Size: {x: 0.3152141, y: 0.29940033}
   m_EdgeRadius: 0
 --- !u!114 &742910792799440462
 MonoBehaviour:
@@ -146,11 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed9feccd82c50b429c8e16c560f2962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  moveSpeedMultiplier: 0
-  timeBetweenShots: 1
-  bulletSpeed: 500
-  bulletDestroyTimer: 3
-  bulletSpawnDistance: 3
-  canShoot: 0
-  bullet: {fileID: 4250314920852922656, guid: c260f78ee9b8bec4793d8cff3f6674fd, type: 3}
+  moveSpeed: 20
+  dashSpeed: 3
+  playerHealth: 500000
+  dashTime: 0.1
+  canDashTime: 2
+  canDash: 0
+  powerUp: {fileID: 0}

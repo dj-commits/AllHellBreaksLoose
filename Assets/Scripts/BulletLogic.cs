@@ -137,8 +137,8 @@ public class BulletLogic : MonoBehaviour
             float bulletXOffset = cam.transform.position.x - currentBulletX;
             bulletPos.x = cam.transform.position.x + bulletXOffset;
 
-            float bulletYOffset = currentBulletY - camHeight;
-            bulletPos.y = bulletYOffset;
+            float bulletYOffset = cam.transform.position.y - currentBulletY;
+            bulletPos.y = cam.transform.position.y + bulletYOffset;
 
             bulletPos.x += 1;
             bulletPos.y += 1;
