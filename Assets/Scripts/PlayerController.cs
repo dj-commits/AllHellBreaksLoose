@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
     // Booleans
     [SerializeField] bool canDash;
 
+    // GameObjects
     [SerializeField]
     public GameObject powerUp;
 
     // Components
     private Rigidbody2D rb;
+    private Animator playerAnimator;
 
     // Vectors
     Vector2 playerPosition;
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gun = GameObject.Find("gun").GetComponent<Gun>();
-        
+        playerAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         canDash = false;
         moveSpeedMultiplier = 1f;
@@ -72,9 +74,15 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
         movement *= Time.deltaTime;
-
+        if (movement != Vector2.zero)
+        {
+            playerAnimator.SetBool("IsMoving", true);
+            transform.Translate(movement, Space.World);
+        } else
+        {
+            playerAnimator.SetBool("IsMoving", false);
+        }
         
-        transform.Translate(movement, Space.World);
 
         // Shooting
         if (Input.GetButton("Shoot"))

@@ -111,6 +111,11 @@ public class BulletLogic : MonoBehaviour
 
     public void SetPosition(Vector3 bulletPosition) 
     {
+        if (bulletLoops == 1)
+        {
+            rb.velocity /= Random.Range(1, bulletSpeed);
+        }
+
         if (gameObject.layer != secondBulletLayer)
         {
             gameObject.layer = secondBulletLayer;
