@@ -78,7 +78,7 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 3);
-                Debug.Log("left");
+                //Debug.Log("left");
             }
             else if (!(bulletView.x < 1))
             {
@@ -86,7 +86,7 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 2);
-                Debug.Log("right");
+                //Debug.Log("right");
             }
             else if (!(bulletView.y > 0))
             {
@@ -94,7 +94,7 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 1);
-                Debug.Log("down");
+                //Debug.Log("down");
             }
             else if (!(bulletView.y < 1))
             {
@@ -102,7 +102,7 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 0);
-                Debug.Log("top");
+                //Debug.Log("top");
             }
 
         }

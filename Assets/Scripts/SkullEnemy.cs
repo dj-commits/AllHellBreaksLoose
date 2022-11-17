@@ -13,7 +13,6 @@ public class SkullEnemy : Enemy
         this.health = 5;
         this.damage = 5;
         this.moveSpeed = 3;
-        this.dropChance = .2f;
         skullLootTable = new List<GameObject>();
         otherPowerUp = Resources.Load("Prefabs/Powerups/otherPowerup", typeof(GameObject)) as GameObject;
         skullLootTable.Add(otherPowerUp);
@@ -23,11 +22,13 @@ public class SkullEnemy : Enemy
     // Update is called once per frame
     public override void Update()
     {
-        base.StalkPlayer();
-        base.CheckForDeath();
-        if (!isAlive)
-        {
-            base.LootDrop(skullLootTable[0], dropChance);
-        }
+        base.Update();
+    }
+
+    public override void Death()
+    {
+        base.LootDrop(skullLootTable[0]);
+        base.Death();
+
     }
 }

@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e9821ea22c55d429fd91de6753ddcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 8
+  maxEnemies: 10
 --- !u!4 &818208892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 742910792799440460, guid: 478e516aff56cd2478715e483b8f44db, type: 3}

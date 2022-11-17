@@ -38,7 +38,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        
+        if (CheckPlayerDeath())
+        {
+            // do something
+        }
+        else
+        {
+            if (CheckForDeath())
+            {
+                Death();
+            }
+            else
+            {
+                StalkPlayer();
+            }
+        }
     }
 
     public virtual void StalkPlayer()
@@ -64,25 +78,41 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public virtual void CheckForDeath()
+    public virtual bool CheckForDeath()
     {
         if (health <= 0)
         {
-            Death();
+            return true;
         }
+        return false;
     }
 
-    public virtual void LootDrop(GameObject powerUp, float chance)
+    public virtual bool CheckPlayerDeath()
     {
+        if (player.GetComponent<PlayerController>().GetPlayerHealth() <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public virtual void LootDrop(GameObject powerUp)
+    {
+        Debug.Log("GameObject: " + gameObject.name);
+        float chance = em.GetDropChance(gameObject);
+        Debug.Log("Chance: " + chance);
         float probability = Random.value;
         Debug.Log("Probability = " + probability);
         if (probability <= chance)
         {
+            Debug.Log("Probability less than or equal to chance");
+            em.ResetDropChance();
             Quaternion rotation = this.transform.rotation;
             GameObject powerUpClone = Instantiate(powerUp, this.transform.position, rotation);
         }else
         {
-            dropChance += .1f;
+            em.IncrementDropChance(gameObject, .1f);
+            Debug.Log("Incrementing Drop Chance for: " + gameObject.name);
         }
         
     }

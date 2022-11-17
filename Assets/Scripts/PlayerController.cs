@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     // Booleans
     [SerializeField] bool canDash;
+    [SerializeField] public bool isAlive;
 
     // GameObjects
     [SerializeField]
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         canDash = false;
         moveSpeedMultiplier = 1f;
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
         // check for playerDeath
         if (playerHealth <= 0)
         {
+            isAlive = false;
             Destroy(gameObject);
         }
 
@@ -110,6 +113,11 @@ public class PlayerController : MonoBehaviour
         
 
 
+    }
+
+    public float GetPlayerHealth()
+    {
+        return playerHealth;
     }
 
     IEnumerator setDashTimer()
