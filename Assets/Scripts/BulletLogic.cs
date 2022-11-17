@@ -45,7 +45,7 @@ public class BulletLogic : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         camHeight = 2f * cam.orthographicSize;
-        camWidth = (camHeight * cam.aspect) / 2;
+        camWidth = camHeight * cam.aspect;
         initBulletLayer = LayerMask.NameToLayer("initBullet");
         secondBulletLayer = LayerMask.NameToLayer("secondBullet");
         enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -116,6 +116,8 @@ public class BulletLogic : MonoBehaviour
             gameObject.layer = secondBulletLayer;
         }
 
+        // this isn't working yet
+        // rb.angularDrag += .2f;
         this.transform.position = bulletPosition;
         this.bulletOutOfView = false;
         
@@ -131,17 +133,13 @@ public class BulletLogic : MonoBehaviour
   
         if (switchCase == 0) // upper
         {
-            float currentBulletX = cam.ViewportToWorldPoint(bulletView).x; // 1
-            float currentBulletY = cam.ViewportToWorldPoint(bulletView).y; // -18
+            float currentBulletX = cam.ViewportToWorldPoint(bulletView).x; // .067
+            float currentBulletY = cam.ViewportToWorldPoint(bulletView).y; // 2.457
 
-            float bulletXOffset = cam.transform.position.x - currentBulletX;
-            bulletPos.x = cam.transform.position.x + bulletXOffset;
+            float bulletXOffset = cam.transform.position.x - currentBulletX; // -0.067
+            bulletPos.x = cam.transform.position.x + bulletXOffset; // -0.067
 
-            float bulletYOffset = cam.transform.position.y - currentBulletY;
-            bulletPos.y = cam.transform.position.y + bulletYOffset;
-
-            bulletPos.x += 1;
-            bulletPos.y += 1;
+            bulletPos.y = currentBulletY - camHeight;
 
             spriteRenderer.color = Color.red;
             SetPosition(bulletPos);
@@ -154,11 +152,7 @@ public class BulletLogic : MonoBehaviour
             float bulletXOffset = cam.transform.position.x - currentBulletX;
             bulletPos.x = cam.transform.position.x + bulletXOffset;
 
-            float bulletYOffset = currentBulletY + camHeight;
-            bulletPos.y = bulletYOffset;
-
-            bulletPos.x -= 1;
-            bulletPos.y -= 1;
+            bulletPos.y = currentBulletY + camHeight;
 
             spriteRenderer.color = Color.red;
             SetPosition(bulletPos);
@@ -167,14 +161,11 @@ public class BulletLogic : MonoBehaviour
         {
             float currentBulletX = cam.ViewportToWorldPoint(bulletView).x;
             float currentBulletY = cam.ViewportToWorldPoint(bulletView).y;
-            float bulletXOffset = currentBulletX - camWidth*2;
+            float bulletXOffset = currentBulletX - camWidth;
             bulletPos.x = bulletXOffset;
 
             float bulletYOffset = cam.transform.position.y - currentBulletY;
             bulletPos.y = cam.transform.position.y + bulletYOffset;
-
-            bulletPos.x += 1;
-            bulletPos.y += 1;
 
             spriteRenderer.color = Color.red;
             SetPosition(bulletPos);
@@ -189,9 +180,6 @@ public class BulletLogic : MonoBehaviour
 
             float bulletYOffset = cam.transform.position.y - currentBulletY;
             bulletPos.y = cam.transform.position.y + bulletYOffset;
-
-            bulletPos.x -= 1;
-            bulletPos.y -= 1;
 
             spriteRenderer.color = Color.red;
             SetPosition(bulletPos);
