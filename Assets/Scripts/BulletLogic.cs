@@ -32,7 +32,7 @@ public class BulletLogic : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Camera cam;
-    EnemyLogic enemyLogic;
+    Enemy enemy;
     PlayerController playerController;
     BoxCollider2D boxCollider2D;
 
@@ -200,8 +200,8 @@ public class BulletLogic : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            enemyLogic = other.gameObject.GetComponent<EnemyLogic>();
-            enemyLogic.TakeDamage(bulletDamage);
+            enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.TakeDamage(bulletDamage);
             Destroy(gameObject);
 
         }
