@@ -10,11 +10,14 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField]
     GameObject powerUp;
 
+    EnemyManager enemyManager;
+
     Transform player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
+        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
@@ -22,7 +25,9 @@ public class EnemyLogic : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
+            // ToDo - add random chance of lootDrop
             CreatePowerup();
+            enemyManager.KillEnemy();
             Destroy(gameObject);
         }
         transform.position = Vector2.MoveTowards(transform.position, player.position, enemyMovementSpeed * Time.deltaTime);
