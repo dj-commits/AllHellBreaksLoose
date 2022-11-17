@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     protected float moveSpeedMultiplier;
     protected float health;
     protected float damage;
+    protected float dropChance;
     protected bool isAlive;
     
 
     GameObject player;
+    EnemyManager em;
 
     [SerializeField]
     const float DEFAULT_MOVE_SPEED = 3f;
@@ -21,11 +23,14 @@ public class Enemy : MonoBehaviour
     const float DEFAULT_ENEMY_HEALTH = 10;
     [SerializeField]
     const float DEFAULT_ENEMY_DAMAGE = 2;
-    
+    [SerializeField]
+    const float DEFAULT_DROP_CHANCE = 2;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         player = GameObject.Find("Player");
+        em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         isAlive = true;
 
     }
@@ -54,7 +59,9 @@ public class Enemy : MonoBehaviour
     public virtual void Death()
     {
         isAlive = false;
+        em.KillEnemy();
         Destroy(gameObject);
+
     }
 
     public virtual void CheckForDeath()
@@ -65,10 +72,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void LootDrop(GameObject powerUp)
+    public virtual void LootDrop(GameObject powerUp, float chance)
     {
-        Quaternion rotation = this.transform.rotation;
-
-        GameObject powerUpClone = Instantiate(powerUp, this.transform.position, rotation);
+        float probability = Random.value;
+        Debug.Log("Probability = " + probability);
+        if (probability <= chance)
+        {
+            Quaternion rotation = this.transform.rotation;
+            GameObject powerUpClone = Instantiate(powerUp, this.transform.position, rotation);
+        }else
+        {
+            dropChance += .1f;
+        }
+        
     }
 }

@@ -15,6 +15,7 @@ public class DashPowerup : Powerup
         base.Start();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         this.powerUpType = "Dash";
+        this.lifeTimer = 5f;
     }
 
     public override void Update()

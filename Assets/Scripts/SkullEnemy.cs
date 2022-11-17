@@ -13,6 +13,7 @@ public class SkullEnemy : Enemy
         this.health = 5;
         this.damage = 5;
         this.moveSpeed = 3;
+        this.dropChance = .2f;
         skullLootTable = new List<GameObject>();
         otherPowerUp = Resources.Load("Prefabs/Powerups/otherPowerup", typeof(GameObject)) as GameObject;
         skullLootTable.Add(otherPowerUp);
@@ -26,7 +27,7 @@ public class SkullEnemy : Enemy
         base.CheckForDeath();
         if (!isAlive)
         {
-            base.LootDrop(skullLootTable[0]);
+            base.LootDrop(skullLootTable[0], dropChance);
         }
     }
 }

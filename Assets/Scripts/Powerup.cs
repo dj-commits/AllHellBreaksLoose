@@ -34,6 +34,15 @@ public class Powerup : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+       
+        if (this.pickedUp == false)
+        {
+            lifeTimer -= Time.deltaTime;
+            if (lifeTimer <= 0)
+            {
+                DespawnPower();
+            }
+        }
     }
 
     public virtual void ActivatePower()
@@ -51,6 +60,11 @@ public class Powerup : MonoBehaviour
     public virtual void DeactivatePower()
     {
         this.isActive = false;
+    }
+
+    public virtual void DespawnPower()
+    {
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D other)

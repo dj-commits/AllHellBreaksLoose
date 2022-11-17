@@ -13,6 +13,7 @@ public class ImpEnemy : Enemy
         this.health = 20;
         this.damage = 15;
         this.moveSpeed = 1;
+        this.dropChance = .5f;
         impLootTable = new List<GameObject>();
         dashPowerUp = Resources.Load("Prefabs/Powerups/dashPowerup", typeof(GameObject)) as GameObject;
         impLootTable.Add(dashPowerUp);
@@ -26,7 +27,7 @@ public class ImpEnemy : Enemy
         base.CheckForDeath();
         if (!isAlive)
         {
-            base.LootDrop(impLootTable[0]);
+            base.LootDrop(impLootTable[0], dropChance);
         }
     }
 }

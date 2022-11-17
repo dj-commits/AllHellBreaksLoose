@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     GameObject bossEnemy;
     List<GameObject> enemyObjects;
     Camera cam;
-
+    [SerializeField] int maxEnemies;
     private int enemyCount;
 
     private void Start()
@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        if (enemyCount < 3)
+        if (enemyCount < maxEnemies)
         {
             SpawnEnemy();
             enemyCount++;
