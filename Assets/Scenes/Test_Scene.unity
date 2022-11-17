@@ -823,6 +823,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818208892}
     m_Modifications:
+    - target: {fileID: 1036766257868589212, guid: e11b5a21bfa97bf49bd00e26abb4339c, type: 3}
+      propertyPath: gunDirectionOffset
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1114066670382517809, guid: e11b5a21bfa97bf49bd00e26abb4339c, type: 3}
       propertyPath: m_SpriteSortPoint
       value: 1
