@@ -153,6 +153,7 @@ MonoBehaviour:
   dashTime: 0.1
   canDashTime: 2
   canDash: 0
+  isAlive: 0
   powerUp: {fileID: 0}
 --- !u!95 &-1791504399991546340
 Animator:

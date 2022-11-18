@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         if (playerHealth <= 0)
         {
             isAlive = false;
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         // Movement
@@ -74,11 +74,11 @@ public class PlayerController : MonoBehaviour
         movement *= Time.deltaTime;
         if (movement != Vector2.zero)
         {
-            playerAnimator.SetBool("IsMoving", true);
+            playerAnimator.SetBool("isMoving", true);
             transform.Translate(movement, Space.World);
         } else
         {
-            playerAnimator.SetBool("IsMoving", false);
+            playerAnimator.SetBool("isMoving", false);
         }
         
 
