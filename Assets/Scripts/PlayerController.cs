@@ -32,15 +32,10 @@ public class PlayerController : MonoBehaviour
 
     Gun gun;
 
-    [SerializeField]
     const float DEFAULT_MOVE_SPEED = 1f;
-    [SerializeField]
     const float DEFAULT_DASH_SPEED = 3f;
-    [SerializeField]
     const float DEFAULT_CAN_DASH_TIME = 2f;
-    [SerializeField]
     const float DEFAULT_DASH_TIME = 0.1f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -98,11 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             if (this.powerUp != null)
             {
-
-                if (powerUp.name.ToUpper().Contains("DASH"))
-                {
-                    powerUp.GetComponent<DashPowerup>().ActivatePower();
-                }
+                powerUp.GetComponent<Powerup>().ActivatePower();
             }
         }
 

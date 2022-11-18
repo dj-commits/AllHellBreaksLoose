@@ -90,7 +90,7 @@ public class Powerup : MonoBehaviour
         this.powerupTime = powerupTime;
     }
 
-    public IEnumerator setPowerupTime()
+    public IEnumerator setPowerupTimer()
     {
         yield return new WaitForSeconds(powerupTime);
         DeactivatePower();

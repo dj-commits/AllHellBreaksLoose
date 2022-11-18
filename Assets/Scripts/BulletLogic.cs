@@ -180,7 +180,7 @@ public class BulletLogic : MonoBehaviour
         {
             float currentBulletX = cam.ViewportToWorldPoint(bulletView).x;
             float currentBulletY = cam.ViewportToWorldPoint(bulletView).y;
-            float bulletXOffset = currentBulletX + camWidth*2;
+            float bulletXOffset = currentBulletX + camWidth;
             bulletPos.x = bulletXOffset;
 
             float bulletYOffset = cam.transform.position.y - currentBulletY;

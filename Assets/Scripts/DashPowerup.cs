@@ -29,7 +29,7 @@ public class DashPowerup : Powerup
         this.getPlayerController().setCanDash(true);
         this.getPlayerController().setCanDashTime(canDashTime);
         this.getPlayerController().setPowerup(null);
-        StartCoroutine(setPowerupTime());
+        StartCoroutine(setPowerupTimer());
 
     }
 
@@ -48,5 +48,6 @@ public class DashPowerup : Powerup
     {
         base.DeactivatePower();
         this.getPlayerController().setCanDash(false);
+        this.getPlayerController().setCanDashTime(-1);
     }
 }
