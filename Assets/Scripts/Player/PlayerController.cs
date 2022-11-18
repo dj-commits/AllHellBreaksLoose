@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     // Timer vars
     [SerializeField] float dashTime;
-    [SerializeField] float canDashTime;
+    [SerializeField] float dashRechargeTime;
 
     // Booleans
     [SerializeField] bool canDash;
@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
 
     Gun gun;
 
-    const float DEFAULT_MOVE_SPEED = 1f;
-    const float DEFAULT_DASH_SPEED = 3f;
-    const float DEFAULT_CAN_DASH_TIME = 2f;
-    const float DEFAULT_DASH_TIME = 0.1f;
+    float DEFAULT_MOVE_SPEED = 20f;
+    float DEFAULT_DASH_SPEED = 3f;
+    float DEFAULT_DASH_RECHARGE_TIME = 0f;
+    float DEFAULT_DASH_TIME = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,12 +59,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // Movement
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeedMultiplier = dashSpeed;
-            canDash = false;
             StartCoroutine(setDashTimer());
-            StartCoroutine(setCanDashTimer());
+            StartCoroutine(setDashRechargeTimer());
+            canDash = false;
         }
 
         float inputX = Input.GetAxis("Horizontal");
@@ -111,15 +111,19 @@ public class PlayerController : MonoBehaviour
         return playerHealth;
     }
 
+    //Adjusts movement speed back to normal after timer has counted down
+    //The time a dash movement lasts for
     IEnumerator setDashTimer()
     {
         yield return new WaitForSeconds(dashTime);
-        moveSpeedMultiplier = DEFAULT_MOVE_SPEED;
+        moveSpeedMultiplier = 1;
     }
 
-    IEnumerator setCanDashTimer()
+    //Re-enables dashing after recharge timer has counted down
+    //The time before you can dash again
+    IEnumerator setDashRechargeTimer()
     {
-        yield return new WaitForSeconds(canDashTime);
+        yield return new WaitForSeconds(dashRechargeTime);
         canDash = true;
     }
 
@@ -138,42 +142,34 @@ public class PlayerController : MonoBehaviour
         this.canDash = canDash;
     }
 
-    public void setCanDashTime(float canDashTime)
+    public void setDashRechargeTime(float dashRechargeTime)
     {
-        if (canDashTime < 0)
-        {
-            canDashTime = DEFAULT_CAN_DASH_TIME;
-        }
-        this.canDashTime = canDashTime;
+        this.dashRechargeTime = dashRechargeTime;
         
+    }
+    public void resetDashRechargeTime()
+    {
+        this.dashRechargeTime = DEFAULT_DASH_RECHARGE_TIME;
     }
 
     public void setDashSpeed(float dashSpeed)
-    {
-        if (dashSpeed < 0)
-        {
-            dashSpeed = DEFAULT_DASH_SPEED;
-        }
-            
+    { 
         this.dashSpeed = dashSpeed;
     }
 
     public void setMoveSpeed(float moveSpeed)
     {
-        if (moveSpeed < 0)
-        {
-            moveSpeed = DEFAULT_MOVE_SPEED;
-        }
         this.moveSpeed = moveSpeed;
     }
 
     public void setDashTime(float dashTime)
     {
-        if(dashTime < 0)
-        {
-            dashTime = DEFAULT_DASH_TIME;
-        }
         this.dashTime = dashTime;
+    }
+
+    public Gun getGun()
+    {
+        return gun;
     }
 
 }

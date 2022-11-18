@@ -18,6 +18,7 @@ public class Powerup : MonoBehaviour
 
     // Components
     Rigidbody2D rb;
+    BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
     Camera cam;
     EnemyLogic enemyLogic;
@@ -32,6 +33,7 @@ public class Powerup : MonoBehaviour
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -57,7 +59,13 @@ public class Powerup : MonoBehaviour
 
     public virtual void PickupPower()
     {
-        spriteRenderer.enabled = false;
+        if (this.pickedUp == false)
+        {
+            spriteRenderer.enabled = false;
+            boxCollider2D.enabled = false;
+            this.pickedUp = true;
+            this.getPlayerController().setPowerup(this.gameObject);
+        }
     }
 
     public virtual void DeactivatePower()

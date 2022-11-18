@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  dashSpeed: 3
+  dashSpeed: 1
   playerHealth: 500000
   dashTime: 0.1
-  canDashTime: 2
+  canDashTime: 0
   canDash: 0
   isAlive: 0
   powerUp: {fileID: 0}

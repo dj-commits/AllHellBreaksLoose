@@ -13,11 +13,17 @@ public class Gun : MonoBehaviour
     float timeBetweenShots;
 
     [SerializeField]
+    float defaultTimeBetweenShots;
+
+    [SerializeField]
     bool canShoot;
+
+    Sprite defaultSprite;
 
     void Start()
     {
         canShoot = true;
+        defaultSprite = this.GetComponent<SpriteRenderer>().sprite;
     }
 
     void Update()
@@ -66,5 +72,20 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenShots);
         canShoot = true;
+    }
+
+    public float getTimeBetweenShots()
+    {
+        return timeBetweenShots;
+    }
+
+    public void setTimeBetweenShots(float timeBetweenShots)
+    {
+        this.timeBetweenShots = timeBetweenShots;
+    }
+
+    public void resetTimeBetweenShots()
+    {
+        this.timeBetweenShots = this.defaultTimeBetweenShots;
     }
 }

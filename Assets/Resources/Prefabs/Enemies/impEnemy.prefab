@@ -121,15 +121,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293298148877973496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc661b9f1bbe8a45bca20ab5e7da7a1, type: 3}
+  m_Script: {fileID: 11500000, guid: b0ec84cb45204464daa8249440f6605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 3
   moveSpeedMultiplier: 0
-  health: 20
-  damage: 15
+  health: 10
+  damage: 2
   isAlive: 0
-  attackRange: 0.1
+  attackRange: 0.2
   dropChance: 0.1
   defaultDropChance: 0.1
   dropChanceIncrementValue: 0.1

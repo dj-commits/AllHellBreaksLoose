@@ -98,5 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4250314920852922656, guid: c260f78ee9b8bec4793d8cff3f6674fd, type: 3}
+  gunDirectionOffset: 0
   timeBetweenShots: 0.15
+  defaultTimeBetweenShots: 0.15
   canShoot: 1

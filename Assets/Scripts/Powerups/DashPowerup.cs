@@ -7,13 +7,10 @@ public class DashPowerup : Powerup
     [SerializeField]
     float canDashTime;
 
-    BoxCollider2D boxCollider2D;
-
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         this.powerUpType = "Dash";
         this.lifeTimer = 5f;
     }
@@ -26,8 +23,8 @@ public class DashPowerup : Powerup
     public override void ActivatePower()
     {
         base.ActivatePower();
-        this.getPlayerController().setCanDash(true);
-        this.getPlayerController().setCanDashTime(canDashTime);
+        this.getPlayerController().setDashRechargeTime(canDashTime);
+        this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.red;
         this.getPlayerController().setPowerup(null);
         StartCoroutine(setPowerupTimer());
 
@@ -35,19 +32,13 @@ public class DashPowerup : Powerup
 
     public override void PickupPower()
     {
-        if (this.pickedUp == false)
-        {
-            base.PickupPower();
-            boxCollider2D.enabled = false;
-            this.pickedUp = true;
-            this.getPlayerController().setPowerup(this.gameObject);
-        }
+        base.PickupPower();
     }
 
     public override void DeactivatePower()
     {
         base.DeactivatePower();
-        this.getPlayerController().setCanDash(false);
-        this.getPlayerController().setCanDashTime(-1);
+        this.getPlayerController().resetDashRechargeTime();
+        this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
