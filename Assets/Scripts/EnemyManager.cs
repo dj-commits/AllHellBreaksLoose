@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    GameObject impEnemy;
-    GameObject skullEnemy;
-    GameObject bossEnemy;
+    
     List<GameObject> enemyObjects;
     Camera cam;
     [SerializeField] int maxEnemies;
@@ -16,8 +14,8 @@ public class EnemyManager : MonoBehaviour
     {
         enemyObjects = new List<GameObject>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        impEnemy = Resources.Load("Prefabs/Enemies/impEnemy", typeof(GameObject)) as GameObject;
-        skullEnemy = Resources.Load("Prefabs/Enemies/skullEnemy", typeof(GameObject)) as GameObject;
+        GameObject impEnemy = Resources.Load("Prefabs/Enemies/impEnemy", typeof(GameObject)) as GameObject;
+        GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skullEnemy", typeof(GameObject)) as GameObject;
         enemyObjects.Add(impEnemy);
         enemyObjects.Add(skullEnemy);
         enemyCount = 0;
