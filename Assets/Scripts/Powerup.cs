@@ -13,6 +13,9 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     public string powerUpType;
 
+    [SerializeField]
+    protected float chanceToDrop;
+
     // Components
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -95,5 +98,10 @@ public class Powerup : MonoBehaviour
         yield return new WaitForSeconds(powerupTime);
         DeactivatePower();
         Destroy(gameObject);
+    }
+
+    public float getChanceToDrop()
+    {
+        return chanceToDrop;
     }
 }

@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class SkullEnemy : Enemy
 {
-    private GameObject otherPowerUp;
-    private List<GameObject> skullLootTable;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        this.health = 5;
-        this.damage = 5;
-        this.moveSpeed = 3;
-        skullLootTable = new List<GameObject>();
-        otherPowerUp = Resources.Load("Prefabs/Powerups/otherPowerup", typeof(GameObject)) as GameObject;
-        skullLootTable.Add(otherPowerUp);
+        GameObject otherPowerUp = Resources.Load("Prefabs/Powerups/otherPowerup", typeof(GameObject)) as GameObject;
+        lootTable.Add(otherPowerUp);
 
     }
 
@@ -27,7 +21,6 @@ public class SkullEnemy : Enemy
 
     public override void Death()
     {
-        base.LootDrop(skullLootTable[0]);
         base.Death();
 
     }

@@ -10,12 +10,7 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> enemyObjects;
     Camera cam;
     [SerializeField] int maxEnemies;
-    private float impDropChance;
-    private float skullDropChance;
     private int enemyCount;
-
-    const float DEFAULT_IMP_DROP_CHANCE = .1f;
-    const float DEFAULT_SKULL_DROP_CHANCE = .05f;
 
     private void Start()
     {
@@ -26,8 +21,6 @@ public class EnemyManager : MonoBehaviour
         enemyObjects.Add(impEnemy);
         enemyObjects.Add(skullEnemy);
         enemyCount = 0;
-        impDropChance = DEFAULT_IMP_DROP_CHANCE;
-        skullDropChance = DEFAULT_SKULL_DROP_CHANCE;
     }
 
     private void Update()
@@ -53,51 +46,16 @@ public class EnemyManager : MonoBehaviour
         enemyCount--;
     }
 
-    public float GetDropChance(GameObject go)
+    public GameObject getEnemyObject(string name)
     {
-        if (go.name.Contains("imp"))
+        foreach (GameObject e in enemyObjects)
         {
-            return impDropChance;
-        } else if (go.name.Contains("skull"))
-        {
-            return skullDropChance;
-        }
-        else
-        {
-            return 1f;
-        }
-    }
-
-    public void IncrementDropChance(GameObject go, float value)
-    {
-        if (go.name.Contains("imp"))
-        {
-            if (impDropChance >= 1)
+            if (name.Contains(e.name))
             {
-                ResetDropChance();
-            }
-            else
-            {
-                impDropChance += value;
-            }
-
-        }
-        else if (go.name.Contains("skull"))
-        {
-            if (skullDropChance >= 1)
-            {
-                ResetDropChance();
-            }
-            else
-            {
-                skullDropChance += value;
+                Debug.Log("IT IS!");
+                return e;
             }
         }
-    }
-
-    public void ResetDropChance()
-    {
-        impDropChance = DEFAULT_IMP_DROP_CHANCE;
-        skullDropChance = DEFAULT_SKULL_DROP_CHANCE;
+        return null;
     }
 }
