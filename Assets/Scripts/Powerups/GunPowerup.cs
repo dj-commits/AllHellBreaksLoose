@@ -12,7 +12,6 @@ public class GunPowerup : Powerup
     {
         base.Start();
         this.powerUpType = "Gun";
-        this.lifeTimer = 5f;
     }
 
     public override void Update()
@@ -25,8 +24,6 @@ public class GunPowerup : Powerup
         base.ActivatePower();
         this.getPlayerController().getGun().setTimeBetweenShots(timeBetweenShots);
         this.getPlayerController().getGun().GetComponent<SpriteRenderer>().color = Color.green;
-        this.getPlayerController().setPowerup(null);
-        StartCoroutine(setPowerupTimer());
 
     }
 
@@ -40,5 +37,6 @@ public class GunPowerup : Powerup
         base.DeactivatePower();
         this.getPlayerController().getGun().resetTimeBetweenShots();
         this.getPlayerController().getGun().GetComponent<SpriteRenderer>().color = Color.white;
+        Destroy(this);
     }
 }

@@ -4,36 +4,30 @@ using UnityEngine;
 
 public class ShieldPowerup : Powerup
 {
-    private bool shieldAcive;
-    private GameObject playerShield;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         this.powerUpType = "Shield";
-        this.lifeTimer = 5f;
-        
     }
 
     public override void Update()
     {
         base.Update();
-        if (shieldAcive) 
-        { 
-            playerShield.transform.position = this.getPlayerController().gameObject.transform.position;
+
+        if (this.isActive && this.isPickedUp)
+        {
+            this.transform.position = this.getPlayerController().gameObject.transform.position;
         }
     }
 
     public override void ActivatePower()
     {
         base.ActivatePower();
-        playerShield = this.getPlayerController().CreateShield();
-        //this.getPlayerController().setDashRechargeTime(canDashTime);
-       // this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.red;
-        //this.getPlayerController().setPowerup(null);
-        //StartCoroutine(setPowerupTimer());
-
+        this.transform.position = this.getPlayerController().gameObject.transform.position;
+        this.spriteRenderer.enabled = true;
+        this.circleCollider2D.enabled = true;
     }
 
     public override void PickupPower()
@@ -44,7 +38,29 @@ public class ShieldPowerup : Powerup
     public override void DeactivatePower()
     {
         base.DeactivatePower();
-        //this.getPlayerController().resetDashRechargeTime();
         this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.white;
+        //Destroy(this);
     }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("Shield Collision: " + other.gameObject.tag);
+        if (other.gameObject.tag == "Player" && !isPickedUp)
+        {
+            PickupPower();
+        }
+
+        if (other.gameObject.tag == "Bullet" && isPickedUp && isActive)
+        {
+            Debug.Log("Active shield hit bullet");
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Enemy" && isPickedUp && isActive)
+        {
+            Debug.Log("Active shield hit enemy");
+            Destroy(other.gameObject);
+        }
+    }
+
 }

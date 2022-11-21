@@ -78,7 +78,6 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 3);
-                //Debug.Log("left");
             }
             else if (!(bulletView.x < 1))
             {
@@ -86,7 +85,6 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 2);
-                //Debug.Log("right");
             }
             else if (!(bulletView.y > 0))
             {
@@ -94,7 +92,6 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 1);
-                //Debug.Log("down");
             }
             else if (!(bulletView.y < 1))
             {
@@ -102,7 +99,6 @@ public class BulletLogic : MonoBehaviour
                 bulletLoops++;
                 bulletOutOfView = true;
                 FlipBullet(bulletPos, bulletView, 0);
-                //Debug.Log("top");
             }
 
         }
@@ -196,33 +192,21 @@ public class BulletLogic : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Shield")
-        {
-            Debug.Log("Hitting Shield");
-            Destroy(gameObject);
-
-        }
+        Debug.Log("Bullet hit: " + other.gameObject.tag);
 
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Hitting Enemy");
             enemy = other.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(bulletDamage);
             Destroy(gameObject);
-
         }
-
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Hitting Player");
             playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.TakeDamage(bulletDamage);
             Destroy(gameObject);
-
         }
-
-        
 
     }
 }

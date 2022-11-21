@@ -5,19 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Movement vars
-    [SerializeField] float moveSpeed;
-    private float moveSpeedMultiplier;
-    [SerializeField] float dashSpeed;
-    [SerializeField] float playerHealth;
+    [SerializeField]
+    float moveSpeed;
+    [SerializeField]
+    float moveSpeedMultiplier;
+    [SerializeField]
+    float playerHealth;
 
-    // Timer vars
-    [SerializeField] float dashTime;
-    [SerializeField] float dashRechargeTime;
-
-    // Booleans
-    [SerializeField] bool canDash;
     [SerializeField] public bool isAlive;
-    [SerializeField] public bool isShielded;
 
     // GameObjects
     [SerializeField]
@@ -36,9 +31,6 @@ public class PlayerController : MonoBehaviour
     Gun gun;
 
     float DEFAULT_MOVE_SPEED = 20f;
-    float DEFAULT_DASH_SPEED = 3f;
-    float DEFAULT_DASH_RECHARGE_TIME = 0f;
-    float DEFAULT_DASH_TIME = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +39,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        GameObject shield = Resources.Load("Prefabs/Powerups/bubble_shield", typeof(GameObject)) as GameObject;
-        isShielded = false;
-        canDash = true;
+
         moveSpeedMultiplier = 1f;
         isAlive = true;
     }
@@ -65,14 +55,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Movement
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            moveSpeedMultiplier = dashSpeed;
-            StartCoroutine(setDashTimer());
-            StartCoroutine(setDashRechargeTimer());
-            canDash = false;
-        }
-
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
@@ -87,7 +69,6 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("isMoving", false);
         }
-        
 
         // Shooting
         if (Input.GetButton("Shoot"))
@@ -108,37 +89,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
 
-
-    }
-
-    public GameObject CreateShield()
-    {
-        Vector2 shield_spawn = new Vector2(this.transform.position.x, this.transform.position.y - 1);
-        GameObject playerShield = Instantiate(shield, shield_spawn, Quaternion.identity);
-        return playerShield;
     }
 
     public float GetPlayerHealth()
     {
         return playerHealth;
-    }
-
-    //Adjusts movement speed back to normal after timer has counted down
-    //The time a dash movement lasts for
-    IEnumerator setDashTimer()
-    {
-        yield return new WaitForSeconds(dashTime);
-        moveSpeedMultiplier = 1;
-    }
-
-    //Re-enables dashing after recharge timer has counted down
-    //The time before you can dash again
-    IEnumerator setDashRechargeTimer()
-    {
-        yield return new WaitForSeconds(dashRechargeTime);
-        canDash = true;
     }
 
     public void TakeDamage(float damage)
@@ -151,24 +107,9 @@ public class PlayerController : MonoBehaviour
         this.powerUp = powerUp;
     }
 
-    public void setCanDash(bool canDash)
+    public float getMoveSpeed()
     {
-        this.canDash = canDash;
-    }
-
-    public void setDashRechargeTime(float dashRechargeTime)
-    {
-        this.dashRechargeTime = dashRechargeTime;
-        
-    }
-    public void resetDashRechargeTime()
-    {
-        this.dashRechargeTime = DEFAULT_DASH_RECHARGE_TIME;
-    }
-
-    public void setDashSpeed(float dashSpeed)
-    { 
-        this.dashSpeed = dashSpeed;
+        return moveSpeed;
     }
 
     public void setMoveSpeed(float moveSpeed)
@@ -176,9 +117,14 @@ public class PlayerController : MonoBehaviour
         this.moveSpeed = moveSpeed;
     }
 
-    public void setDashTime(float dashTime)
+    public float getMoveSpeedMultiplier()
     {
-        this.dashTime = dashTime;
+        return moveSpeedMultiplier;
+    }
+
+    public void setMoveSpeedMultiplier(float moveSpeedMultiplier)
+    {
+        this.moveSpeedMultiplier = moveSpeedMultiplier;
     }
 
     public Gun getGun()

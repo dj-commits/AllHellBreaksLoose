@@ -8,8 +8,8 @@ public class SkullEnemy : Enemy
     public override void Start()
     {
         base.Start();
-        GameObject otherPowerUp = Resources.Load("Prefabs/Powerups/otherPowerup", typeof(GameObject)) as GameObject;
-        lootTable.Add(otherPowerUp);
+        GameObject shieldPowerup = Resources.Load("Prefabs/Powerups/shieldPowerup", typeof(GameObject)) as GameObject;
+        lootTable.Add(shieldPowerup);
 
     }
 

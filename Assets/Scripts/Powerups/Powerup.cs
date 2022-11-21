@@ -17,13 +17,14 @@ public class Powerup : MonoBehaviour
     protected float chanceToDrop;
 
     // Components
-    Rigidbody2D rb;
-    BoxCollider2D boxCollider2D;
-    SpriteRenderer spriteRenderer;
-    Camera cam;
-    PlayerController playerController;
+    protected Rigidbody2D rb;
+    protected BoxCollider2D boxCollider2D;
+    protected CircleCollider2D circleCollider2D;
+    protected SpriteRenderer spriteRenderer;
+    protected Camera cam;
+    protected PlayerController playerController;
 
-    public bool pickedUp;
+    public bool isPickedUp;
     public bool isActive;
     public float lifeTimer;
 
@@ -33,13 +34,13 @@ public class Powerup : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+        circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-       
-        if (this.pickedUp == false)
+        if (this.isPickedUp == false)
         {
             lifeTimer -= Time.deltaTime;
             if (lifeTimer <= 0)
@@ -52,17 +53,19 @@ public class Powerup : MonoBehaviour
     public virtual void ActivatePower()
     {
         this.isActive = true;
-        
-        
+        this.getPlayerController().setPowerup(null);
+        StartCoroutine(setPowerupTimer());
     }
 
     public virtual void PickupPower()
     {
-        if (this.pickedUp == false)
+        Debug.Log("pickup power");
+        if (this.isPickedUp == false)
         {
-            spriteRenderer.enabled = false;
-            boxCollider2D.enabled = false;
-            this.pickedUp = true;
+            if (spriteRenderer != null) spriteRenderer.enabled = false;
+            if (boxCollider2D != null) boxCollider2D.enabled = false;
+            if (circleCollider2D != null) circleCollider2D.enabled = false;
+            this.isPickedUp = true;
             this.getPlayerController().setPowerup(this.gameObject);
         }
     }

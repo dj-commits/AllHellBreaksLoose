@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class DashPowerup : Powerup
 {
+    // Timer vars
     [SerializeField]
-    float canDashTime;
+    float dashSpeed;
+
+    float originalSpeed;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         this.powerUpType = "Dash";
-        this.lifeTimer = 5f;
+        originalSpeed = this.getPlayerController().getMoveSpeedMultiplier();
     }
 
     public override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            this.getPlayerController().setMoveSpeedMultiplier(dashSpeed);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            this.getPlayerController().setMoveSpeedMultiplier(originalSpeed);
+        }
     }
 
     public override void ActivatePower()
     {
         base.ActivatePower();
-        this.getPlayerController().setDashRechargeTime(canDashTime);
         this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.red;
-        this.getPlayerController().setPowerup(null);
-        StartCoroutine(setPowerupTimer());
-
     }
 
     public override void PickupPower()
@@ -38,7 +45,8 @@ public class DashPowerup : Powerup
     public override void DeactivatePower()
     {
         base.DeactivatePower();
-        this.getPlayerController().resetDashRechargeTime();
+        this.getPlayerController().setMoveSpeedMultiplier(originalSpeed);
         this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.white;
+        Destroy(this);
     }
 }

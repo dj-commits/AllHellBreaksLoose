@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2342632835161656252}
   - component: {fileID: 2127709962144039036}
   - component: {fileID: 2027342134842391535}
-  - component: {fileID: -6874708876084141768}
+  - component: {fileID: -5849231246607983587}
   m_Layer: 9
   m_Name: dashPowerup
   m_TagString: Powerup
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.23, y: 0.39}
   m_EdgeRadius: 0
---- !u!114 &-6874708876084141768
+--- !u!114 &-5849231246607983587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,12 +143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 87330446495960574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6418062410fafad4a836b6a278858436, type: 3}
+  m_Script: {fileID: 11500000, guid: 992a12ab85749784d80496e027246515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupTime: 3
+  powerupTime: 10
   powerUpType: 
-  chanceToDrop: 1
-  pickedUp: 0
+  chanceToDrop: 0
+  isPickedUp: 0
   isActive: 0
   lifeTimer: 5
+  dashSpeed: 1.6

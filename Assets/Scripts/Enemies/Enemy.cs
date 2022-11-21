@@ -121,16 +121,10 @@ public class Enemy : MonoBehaviour
 
     public virtual void LootDrop()
     {
-        Debug.Log("GameObject: " + gameObject.name);
-        //float chance = em.GetDropChance(gameObject);
         float chance = this.dropChance;
-        Debug.Log("Chance: " + chance);
         float probability = Random.value;
-        Debug.Log("Probability = " + probability);
         if (probability <= chance)
         {
-            Debug.Log("Probability less than or equal to chance");
-
             //Reset the drop chance for this particular enemy type
             em.getEnemyObject(gameObject.name).GetComponent<Enemy>().ResetDropChance();
 
@@ -146,7 +140,6 @@ public class Enemy : MonoBehaviour
             GameObject enemy = em.getEnemyObject(gameObject.name);
             Enemy enemyLogic = enemy.GetComponent<Enemy>();
             enemyLogic.IncrementDropChance();
-            Debug.Log("Incrementing Drop Chance for: " + gameObject.name);
         }
         
     }
