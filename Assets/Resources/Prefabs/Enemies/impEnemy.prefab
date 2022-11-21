@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1293298148877973497}
   - component: {fileID: 3419672390631574292}
   - component: {fileID: -3257256437271861800}
+  - component: {fileID: -3278650902049929052}
   m_Layer: 8
   m_Name: impEnemy
   m_TagString: Enemy
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ec84cb45204464daa8249440f6605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   moveSpeedMultiplier: 0
   health: 10
   damage: 2
@@ -133,3 +134,23 @@ MonoBehaviour:
   dropChance: 0.1
   defaultDropChance: 0.1
   dropChanceIncrementValue: 0.1
+--- !u!95 &-3278650902049929052
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293298148877973496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 661d640273bb13541aa3c74e33669044, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

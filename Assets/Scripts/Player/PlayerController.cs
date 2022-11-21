@@ -17,14 +17,17 @@ public class PlayerController : MonoBehaviour
     // Booleans
     [SerializeField] bool canDash;
     [SerializeField] public bool isAlive;
+    [SerializeField] public bool isShielded;
 
     // GameObjects
     [SerializeField]
     public GameObject powerUp;
+    GameObject shield;
 
     // Components
     private Rigidbody2D rb;
     private Animator playerAnimator;
+    private BoxCollider2D collider;
 
     // Vectors
     Vector2 playerPosition;
@@ -42,8 +45,11 @@ public class PlayerController : MonoBehaviour
     {
         gun = GameObject.Find("gun").GetComponent<Gun>();
         playerAnimator = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        canDash = false;
+        GameObject shield = Resources.Load("Prefabs/Powerups/bubble_shield", typeof(GameObject)) as GameObject;
+        isShielded = false;
+        canDash = true;
         moveSpeedMultiplier = 1f;
         isAlive = true;
     }
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Movement
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             moveSpeedMultiplier = dashSpeed;
             StartCoroutine(setDashTimer());
@@ -71,6 +77,7 @@ public class PlayerController : MonoBehaviour
         float inputY = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
+
         movement *= Time.deltaTime;
         if (movement != Vector2.zero)
         {
@@ -104,6 +111,13 @@ public class PlayerController : MonoBehaviour
         
 
 
+    }
+
+    public GameObject CreateShield()
+    {
+        Vector2 shield_spawn = new Vector2(this.transform.position.x, this.transform.position.y - 1);
+        GameObject playerShield = Instantiate(shield, shield_spawn, Quaternion.identity);
+        return playerShield;
     }
 
     public float GetPlayerHealth()

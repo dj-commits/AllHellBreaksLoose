@@ -21,7 +21,6 @@ public class Powerup : MonoBehaviour
     BoxCollider2D boxCollider2D;
     SpriteRenderer spriteRenderer;
     Camera cam;
-    EnemyLogic enemyLogic;
     PlayerController playerController;
 
     public bool pickedUp;

@@ -50,6 +50,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (name.Contains(e.name))
             {
+                // Wat?
                 Debug.Log("IT IS!");
                 return e;
             }

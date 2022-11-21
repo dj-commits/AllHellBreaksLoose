@@ -71,5 +71,6 @@ PrefabInstance:
       propertyPath: chanceToDrop
       value: 0.3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6874708876084141768, guid: fa8bb5adab3cdcd4580c4a67c6981537, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa8bb5adab3cdcd4580c4a67c6981537, type: 3}

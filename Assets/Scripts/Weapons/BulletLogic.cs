@@ -121,8 +121,6 @@ public class BulletLogic : MonoBehaviour
             gameObject.layer = secondBulletLayer;
         }
 
-        // this isn't working yet
-        // rb.angularDrag += .2f;
         this.transform.position = bulletPosition;
         this.bulletOutOfView = false;
         
@@ -198,8 +196,16 @@ public class BulletLogic : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "Shield")
+        {
+            Debug.Log("Hitting Shield");
+            Destroy(gameObject);
+
+        }
+
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Hitting Enemy");
             enemy = other.gameObject.GetComponent<Enemy>();
             enemy.TakeDamage(bulletDamage);
             Destroy(gameObject);
@@ -209,11 +215,14 @@ public class BulletLogic : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
+            Debug.Log("Hitting Player");
             playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.TakeDamage(bulletDamage);
             Destroy(gameObject);
 
         }
+
+        
 
     }
 }

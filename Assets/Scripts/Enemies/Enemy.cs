@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     GameObject player;
     EnemyManager em;
     protected List<GameObject> lootTable;
+    Animator animator;
 
     const float DEFAULT_MOVE_SPEED = 3f;
     const float DEFAULT_ENEMY_MOVESPEEDMULTIPLIER = 0.1f;
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.Find("Player");
+        animator = GetComponent<Animator>();
         em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         isAlive = true;
         lootTable = new List<GameObject>();
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Stalk(GameObject other)
     {
+        animator.SetBool("IsMoving", true);
         transform.position = Vector2.MoveTowards(transform.position, other.transform.position, moveSpeed * Time.deltaTime);
     }
 
