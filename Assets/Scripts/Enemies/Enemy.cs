@@ -30,11 +30,6 @@ public class Enemy : MonoBehaviour
     protected List<GameObject> lootTable;
     Animator animator;
 
-    const float DEFAULT_MOVE_SPEED = 3f;
-    const float DEFAULT_ENEMY_MOVESPEEDMULTIPLIER = 0.1f;
-    const float DEFAULT_ENEMY_HEALTH = 10;
-    const float DEFAULT_ENEMY_DAMAGE = 2;
-
     // Start is called before the first frame update
     public virtual void Start()
     {

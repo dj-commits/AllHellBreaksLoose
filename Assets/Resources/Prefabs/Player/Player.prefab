@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 742910792799440459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.63, y: 0.89, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,12 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed9feccd82c50b429c8e16c560f2962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
-  dashSpeed: 1
-  playerHealth: 500000
-  dashTime: 0.1
-  canDashTime: 0
-  canDash: 0
+  moveSpeed: 2
+  moveSpeedMultiplier: 1
+  defaultMoveSpeedMultiplier: 1
+  playerHealth: 100
   isAlive: 0
   powerUp: {fileID: 0}
 --- !u!95 &-1791504399991546340

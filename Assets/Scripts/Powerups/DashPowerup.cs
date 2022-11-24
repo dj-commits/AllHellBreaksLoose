@@ -8,14 +8,11 @@ public class DashPowerup : Powerup
     [SerializeField]
     float dashSpeed;
 
-    float originalSpeed;
-
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         this.powerUpType = "Dash";
-        originalSpeed = this.getPlayerController().getMoveSpeedMultiplier();
     }
 
     public override void Update()
@@ -27,7 +24,7 @@ public class DashPowerup : Powerup
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            this.getPlayerController().setMoveSpeedMultiplier(originalSpeed);
+            this.getPlayerController().setMoveSpeedMultiplier(this.getPlayerController().getDefaultMoveSpeedMultiplier());
         }
     }
 
@@ -45,7 +42,7 @@ public class DashPowerup : Powerup
     public override void DeactivatePower()
     {
         base.DeactivatePower();
-        this.getPlayerController().setMoveSpeedMultiplier(originalSpeed);
+        this.getPlayerController().setMoveSpeedMultiplier(this.getPlayerController().getDefaultMoveSpeedMultiplier());
         this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.white;
         Destroy(this);
     }

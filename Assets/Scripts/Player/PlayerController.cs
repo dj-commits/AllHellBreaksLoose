@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float moveSpeedMultiplier;
     [SerializeField]
+    float defaultMoveSpeedMultiplier;
+    [SerializeField]
     float playerHealth;
 
     [SerializeField] public bool isAlive;
@@ -29,8 +31,6 @@ public class PlayerController : MonoBehaviour
     Vector3 mousePosition;
 
     Gun gun;
-
-    float DEFAULT_MOVE_SPEED = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +125,11 @@ public class PlayerController : MonoBehaviour
     public void setMoveSpeedMultiplier(float moveSpeedMultiplier)
     {
         this.moveSpeedMultiplier = moveSpeedMultiplier;
+    }
+
+    public float getDefaultMoveSpeedMultiplier()
+    {
+        return defaultMoveSpeedMultiplier;
     }
 
     public Gun getGun()
