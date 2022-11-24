@@ -192,7 +192,7 @@ public class BulletLogic : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Bullet hit: " + other.gameObject.tag);
+        //Debug.Log("Bullet hit: " + other.gameObject.tag);
 
         if (other.gameObject.tag == "Enemy")
         {

@@ -66,7 +66,7 @@ public class Powerup : MonoBehaviour
             if (boxCollider2D != null) boxCollider2D.enabled = false;
             if (circleCollider2D != null) circleCollider2D.enabled = false;
             this.isPickedUp = true;
-            this.getPlayerController().setPowerup(this.gameObject);
+            this.getPlayerController().setPowerup(this);
         }
     }
 

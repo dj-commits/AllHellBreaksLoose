@@ -148,8 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupTime: 5
   powerUpType: 
-  chanceToDrop: 0
-  pickedUp: 0
+  chanceToDrop: 0.1
+  isPickedUp: 0
   isActive: 0
   lifeTimer: 5
   timeBetweenShots: 0.05

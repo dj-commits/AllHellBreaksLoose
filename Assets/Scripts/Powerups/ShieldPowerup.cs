@@ -5,11 +5,14 @@ using UnityEngine;
 public class ShieldPowerup : Powerup
 {
 
+    private int shieldLayer;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         this.powerUpType = "Shield";
+        shieldLayer = LayerMask.NameToLayer("Shield");
     }
 
     public override void Update()
@@ -28,38 +31,37 @@ public class ShieldPowerup : Powerup
         this.transform.position = this.getPlayerController().gameObject.transform.position;
         this.spriteRenderer.enabled = true;
         this.circleCollider2D.enabled = true;
+        this.gameObject.layer = shieldLayer;
     }
 
     public override void PickupPower()
     {
         base.PickupPower();
+        Physics2D.IgnoreCollision(this.circleCollider2D, playerController.getCollider(), true);
     }
 
     public override void DeactivatePower()
     {
         base.DeactivatePower();
-        this.getPlayerController().GetComponent<SpriteRenderer>().color = Color.white;
-        //Destroy(this);
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Shield Collision: " + other.gameObject.tag);
+        //Debug.Log("Shield hit: " + other.gameObject.tag);
+
         if (other.gameObject.tag == "Player" && !isPickedUp)
         {
             PickupPower();
         }
 
-        if (other.gameObject.tag == "Bullet" && isPickedUp && isActive)
+        if (other.gameObject.tag == "Bullet" && isActive)
         {
-            Debug.Log("Active shield hit bullet");
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Enemy" && isPickedUp && isActive)
+        if (other.gameObject.tag == "Enemy" && isActive)
         {
-            Debug.Log("Active shield hit enemy");
-            Destroy(other.gameObject);
+            
         }
     }
 

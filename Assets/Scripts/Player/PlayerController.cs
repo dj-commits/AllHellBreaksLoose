@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     // GameObjects
     [SerializeField]
-    public GameObject powerUp;
+    Powerup powerUp;
     GameObject shield;
 
     // Components
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         playerHealth -= damage;
     }
 
-    public void setPowerup(GameObject powerUp)
+    public void setPowerup(Powerup powerUp)
     {
         this.powerUp = powerUp;
     }
@@ -130,6 +130,11 @@ public class PlayerController : MonoBehaviour
     public Gun getGun()
     {
         return gun;
+    }
+
+    public BoxCollider2D getCollider()
+    {
+        return this.collider;
     }
 
 }
