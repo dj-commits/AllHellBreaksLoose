@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Powerup powerUp;
     GameObject shield;
+    Healthbar healthbar;
 
     // Components
     private Rigidbody2D rb;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        healthbar = GameObject.Find("PlayerHealthbar").GetComponent<Healthbar>();
 
         moveSpeedMultiplier = 1f;
         isAlive = true;
@@ -97,9 +99,12 @@ public class PlayerController : MonoBehaviour
         return playerHealth;
     }
 
+
     public void TakeDamage(float damage)
     {
+
         playerHealth -= damage;
+        healthbar.SetHealth(playerHealth);
     }
 
     public void setPowerup(Powerup powerUp)
