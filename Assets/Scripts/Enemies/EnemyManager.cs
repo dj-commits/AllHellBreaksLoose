@@ -47,7 +47,10 @@ public class EnemyManager : MonoBehaviour
             {
                 foreach (Vector3Int coordinates in tilemap.cellBounds.allPositionsWithin)
                 {
-                    spawnPositions.Add(tilemap.CellToWorld(coordinates));
+                    if (tilemap.HasTile(coordinates))
+                    {
+                        spawnPositions.Add(tilemap.CellToWorld(coordinates));
+                    }
                 }
             }
         }
