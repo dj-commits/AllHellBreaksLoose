@@ -31,6 +31,7 @@ public class ShieldPowerup : Powerup
     {
         base.ActivatePower();
         this.transform.position = this.getPlayerController().gameObject.transform.position;
+        this.getPlayerController().setShielded(true);
         this.spriteRenderer.enabled = true;
         this.circleCollider2D.enabled = true;
         this.gameObject.layer = shieldLayer;
@@ -45,6 +46,7 @@ public class ShieldPowerup : Powerup
     public override void DeactivatePower()
     {
         base.DeactivatePower();
+        this.getPlayerController().setShielded(false);
     }
 
     public void OnCollisionEnter2D(Collision2D other)

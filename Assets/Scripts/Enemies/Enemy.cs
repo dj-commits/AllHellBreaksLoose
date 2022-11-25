@@ -35,10 +35,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected bool canAttack;
 
-    GameObject player;
-    EnemyManager em;
+    protected GameObject player;
+    protected EnemyManager em;
     protected List<GameObject> lootTable;
-    Animator animator;
+    protected Animator animator;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    public virtual void FixedUpdate()
     {
         if (CheckForDeath())
         {
@@ -103,6 +103,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenStalk);
         canStalk = false;
+        animator.SetBool("IsMoving", false);
         
     }
 

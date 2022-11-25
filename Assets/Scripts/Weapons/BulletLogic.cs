@@ -201,6 +201,11 @@ public class BulletLogic : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.gameObject.tag == "Walls")
+        {
+            Destroy(gameObject);
+        }
+
         if (other.gameObject.tag == "Player")
         {
             playerController = other.gameObject.GetComponent<PlayerController>();

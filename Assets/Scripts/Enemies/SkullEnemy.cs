@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SkullEnemy : Enemy
 {
+    // 1 second works well here
+    [SerializeField]
+    float timeUntilSpawnFinished;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -15,13 +18,21 @@ public class SkullEnemy : Enemy
         //lootTable.Add(dashPowerUp);
         lootTable.Add(gunPowerUp);
         lootTable.Add(shieldPowerup);
+        StartCoroutine(SpawnTimer());
 
     }
 
     // Update is called once per frame
-    public override void Update()
+    public override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
+    }
+
+    IEnumerator SpawnTimer()
+    {
+        // move this to base class if Imp gets a spawn anim
+        yield return new WaitForSeconds(timeUntilSpawnFinished);
+        animator.SetBool("IsSpawning", false);
     }
 
     public override void Death()

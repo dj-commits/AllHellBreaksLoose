@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float dashSpeed;
 
+    bool isShielded;
+
     [SerializeField] public bool isAlive;
 
     // GameObjects
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // check for playerDeath
         if (playerHealth <= 0)
@@ -108,6 +110,11 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
 
+        if (isShielded)
+        {
+            damage = 0;
+        }
+
         playerHealth -= damage;
         healthbar.SetHealth(playerHealth);
     }
@@ -142,6 +149,11 @@ public class PlayerController : MonoBehaviour
         return defaultMoveSpeedMultiplier;
     }
 
+    public void setShielded(bool status)
+    {
+        isShielded = status;
+    }
+
     public Gun getGun()
     {
         return gun;
@@ -152,4 +164,8 @@ public class PlayerController : MonoBehaviour
         return this.collider;
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+    }
 }

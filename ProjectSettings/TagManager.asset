@@ -9,6 +9,8 @@ TagManager:
   - Powerup
   - Shield
   - UI
+  - Walls
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Powerup
   - secondBullet
   - Shield
-  - 
+  - Walls
   - 
   - 
   - 

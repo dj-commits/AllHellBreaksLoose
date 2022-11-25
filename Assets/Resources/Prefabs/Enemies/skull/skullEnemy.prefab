@@ -97,3 +97,4 @@ MonoBehaviour:
   timeUntilNextAttack: 1
   canStalk: 0
   canAttack: 0
+  timeUntilSpawnFinished: 1
