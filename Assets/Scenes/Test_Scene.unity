@@ -622,7 +622,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -828,7 +828,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2768,7 +2768,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.6171875, z: 0}
   m_MaxChunkCount: 16
@@ -3769,7 +3769,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832615993}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3780,7 +3780,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &920094931
 GameObject:
@@ -3855,7 +3855,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -5638,6 +5638,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440461, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: dashTime
       value: 0.15
@@ -5647,12 +5651,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: bulletSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: playerHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: collisionOffset
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: timeBetweenDash
@@ -5673,6 +5685,30 @@ PrefabInstance:
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: bulletSpawnDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: movementFilter.useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: movementFilter.layerMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669565237582397458, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3210066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669565237582397458, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.00028325617
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 478e516aff56cd2478715e483b8f44db, type: 3}

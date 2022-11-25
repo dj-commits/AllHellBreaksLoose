@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour
     float playerHealth;
     [SerializeField]
     float dashSpeed;
-
+    [SerializeField]
     bool isShielded;
+
+    public ContactFilter2D movementFilter;
+    [SerializeField]
+    public float collisionOffset;
 
     [SerializeField] public bool isAlive;
 
@@ -63,41 +67,54 @@ public class PlayerController : MonoBehaviour
         // Movement
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
+        Vector2 movementInput = new Vector2(inputX, inputY);
+
+        List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             setMoveSpeedMultiplier(dashSpeed);
-        } else
+        }
+        else
         {
             setMoveSpeedMultiplier(getDefaultMoveSpeedMultiplier());
         }
 
-        Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
-        movement *= Time.deltaTime;
 
-        if (movement != Vector2.zero)
+        int count = rb.Cast(
+            movementInput, // X and Y values between -1 and 1 that represent the direction from the body to look for collisions
+            movementFilter, // the settings that determine where a collision can occur on such as layers to collide with
+            castCollisions, // List of collisions to store the found collisions into after the Cast has finished
+            moveSpeed * Time.deltaTime + collisionOffset); //The amount to cast equal to the movement plus an offset
+        if (count == 1)
         {
-            playerAnimator.SetBool("isMoving", true);
-            transform.Translate(movement, Space.World);
-        } else
-        {
-            playerAnimator.SetBool("isMoving", false);
+            movementInput = Vector2.zero;
         }
-
-        // Shooting
-        if (Input.GetButton("Shoot"))
-        {
-            gun.Shoot();
+        else
+        { 
+            rb.MovePosition(rb.position + movementInput * moveSpeed * Time.deltaTime); 
         }
+            
 
-        // Use powerup
-        if (Input.GetButton("Interact"))
-        {
-            if (this.powerUp != null)
+            //Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
+            //movement *= Time.deltaTime;
+
+
+
+            // Shooting
+            if (Input.GetButton("Shoot"))
             {
-                powerUp.GetComponent<Powerup>().ActivatePower();
+                gun.Shoot();
             }
-        }
+
+            // Use powerup
+            if (Input.GetButton("Interact"))
+            {
+                if (this.powerUp != null)
+                {
+                    powerUp.GetComponent<Powerup>().ActivatePower();
+                }
+            }
 
     }
 
