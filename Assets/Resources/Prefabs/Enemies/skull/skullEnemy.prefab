@@ -86,9 +86,14 @@ MonoBehaviour:
   moveSpeed: 1
   moveSpeedMultiplier: 0
   health: 10
-  damage: 1
+  damage: 10
   isAlive: 0
-  attackRange: 0.2
-  dropChance: 0.05
+  attackRange: 1
+  dropChance: 0.6000001
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
+  timeBetweenStalk: 1
+  timeUntilNextStalk: 5
+  timeUntilNextAttack: 1
+  canStalk: 0
+  canAttack: 0

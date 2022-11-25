@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     float defaultMoveSpeedMultiplier;
     [SerializeField]
     float playerHealth;
+    [SerializeField]
+    float dashSpeed;
 
     [SerializeField] public bool isAlive;
 
@@ -60,9 +62,17 @@ public class PlayerController : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            setMoveSpeedMultiplier(dashSpeed);
+        } else
+        {
+            setMoveSpeedMultiplier(getDefaultMoveSpeedMultiplier());
+        }
 
+        Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
         movement *= Time.deltaTime;
+
         if (movement != Vector2.zero)
         {
             playerAnimator.SetBool("isMoving", true);
@@ -86,11 +96,6 @@ public class PlayerController : MonoBehaviour
                 powerUp.GetComponent<Powerup>().ActivatePower();
             }
         }
-
-    }
-
-    private void FixedUpdate()
-    {
 
     }
 

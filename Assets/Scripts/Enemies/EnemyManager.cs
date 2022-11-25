@@ -14,8 +14,8 @@ public class EnemyManager : MonoBehaviour
     {
         enemyObjects = new List<GameObject>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        GameObject impEnemy = Resources.Load("Prefabs/Enemies/impEnemy", typeof(GameObject)) as GameObject;
-        GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skullEnemy", typeof(GameObject)) as GameObject;
+        GameObject impEnemy = Resources.Load("Prefabs/Enemies/imp/impEnemy", typeof(GameObject)) as GameObject;
+        GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skull/skullEnemy", typeof(GameObject)) as GameObject;
         enemyObjects.Add(impEnemy);
         enemyObjects.Add(skullEnemy);
         enemyCount = 0;

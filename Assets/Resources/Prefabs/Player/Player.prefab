@@ -150,7 +150,8 @@ MonoBehaviour:
   moveSpeed: 2
   moveSpeedMultiplier: 1
   defaultMoveSpeedMultiplier: 1
-  playerHealth: 100
+  playerHealth: 10000
+  dashSpeed: 0
   isAlive: 0
   powerUp: {fileID: 0}
 --- !u!95 &-1791504399991546340

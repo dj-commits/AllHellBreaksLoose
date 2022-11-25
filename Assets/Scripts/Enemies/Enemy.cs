@@ -24,6 +24,16 @@ public class Enemy : MonoBehaviour
     protected float defaultDropChance;
     [SerializeField]
     protected float dropChanceIncrementValue;
+    [SerializeField]
+    protected float timeBetweenStalk;
+    [SerializeField]
+    protected float timeUntilNextStalk;
+    [SerializeField]
+    protected float timeUntilNextAttack;
+    [SerializeField]
+    protected bool canStalk;
+    [SerializeField]
+    protected bool canAttack;
 
     GameObject player;
     EnemyManager em;
@@ -37,7 +47,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         isAlive = true;
+        canStalk = false;
+        canAttack = true;
         lootTable = new List<GameObject>();
+        StartCoroutine(TimeUntilNextStalkTimer());
     }
 
     // Update is called once per frame
@@ -50,22 +63,47 @@ public class Enemy : MonoBehaviour
 
         if (CheckPlayerDeath())
         {
-            // do something
+            Debug.Log("Player died");
         }
         else
         {
-            Stalk(player);
-            if (CheckAttackRange())
+            if (canStalk)
+            {
+                Stalk(player);
+                StartCoroutine(TimeUntilNextStalkTimer());
+            }
+            
+            
+            if (CheckAttackRange() && canAttack)
             {
                 Attack(player);
+                StartCoroutine(TimeUntilNextAttack());
             }
         }
     }
 
     public virtual void Stalk(GameObject other)
+    {        
+        if (!CheckAttackRange())
+        {
+            Vector2 direction = other.transform.position - transform.position;
+            animator.SetBool("IsMoving", true);
+            transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime);
+            StartCoroutine(TimeBetweenStalkTimer());
+        }
+    }
+
+    IEnumerator TimeUntilNextStalkTimer()
     {
-        animator.SetBool("IsMoving", true);
-        transform.position = Vector2.MoveTowards(transform.position, other.transform.position, moveSpeed * Time.deltaTime);
+        yield return new WaitForSeconds(timeUntilNextStalk);
+        canStalk = true;
+    }
+
+    IEnumerator TimeBetweenStalkTimer()
+    {
+        yield return new WaitForSeconds(timeBetweenStalk);
+        canStalk = false;
+        
     }
 
     public virtual void TakeDamage(float damage)
@@ -75,7 +113,16 @@ public class Enemy : MonoBehaviour
 
     public virtual void Attack(GameObject other)
     {
+        Debug.Log("Attacking: " + gameObject.name);
         other.GetComponent<PlayerController>().TakeDamage(damage);
+        canAttack = false;
+
+    }
+
+    IEnumerator TimeUntilNextAttack()
+    {
+        yield return new WaitForSeconds(timeUntilNextAttack);
+        canAttack = true;
     }
 
     public virtual void Death()
@@ -98,7 +145,7 @@ public class Enemy : MonoBehaviour
 
     public virtual bool CheckAttackRange()
     {
-        if (Vector2.Distance(this.transform.position, player.transform.position) <= attackRange)
+        if (Vector2.Distance(this.transform.position, player.transform.position) < attackRange)
         {
             return true;
         }

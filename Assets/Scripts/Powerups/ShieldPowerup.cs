@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShieldPowerup : Powerup
 {
 
+    // TODO: Player can potentially pick up infinite shields - whoops
+
     private int shieldLayer;
 
     // Start is called before the first frame update
