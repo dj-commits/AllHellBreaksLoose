@@ -18,17 +18,17 @@ public class SkullEnemy : Enemy
         //lootTable.Add(dashPowerUp);
         lootTable.Add(gunPowerUp);
         lootTable.Add(shieldPowerup);
-        StartCoroutine(SpawnTimer());
+        StartCoroutine(SpawnAnimTimer());
 
     }
 
     // Update is called once per frame
-    public override void FixedUpdate()
+    public override void Update()
     {
-        base.FixedUpdate();
+        base.Update();
     }
 
-    IEnumerator SpawnTimer()
+    IEnumerator SpawnAnimTimer()
     {
         // move this to base class if Imp gets a spawn anim
         yield return new WaitForSeconds(timeUntilSpawnFinished);

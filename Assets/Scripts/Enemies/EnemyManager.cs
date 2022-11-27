@@ -26,15 +26,16 @@ public class EnemyManager : MonoBehaviour
         enemyObjects.Add(skullEnemy);
         enemyCount = 0;
         spawnPositions = InitSpawnPositions();
+        while (enemyCount < maxEnemies)
+        {
+            SpawnEnemy();
+
+        }
     }
 
     private void Update()
     {
-        if (enemyCount < maxEnemies)
-        {
-            SpawnEnemy();
-            
-        }
+        
     }
 
     private List<Vector3> InitSpawnPositions()
@@ -66,33 +67,6 @@ public class EnemyManager : MonoBehaviour
         Vector3 spawnPos = spawnPositions[spawnPosIndex];
         Instantiate(enemyObjects[randomIndex], spawnPos, Quaternion.identity);
         enemyCount++;
-
-        /*while (spawnPositions.Count < 1)
-        {
-            float xSpawnPos = Random.Range(cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x, cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x);
-            float ySpawnPos = Random.Range(cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).y, cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).y);
-            Vector3 spawnPos = new Vector3(xSpawnPos, ySpawnPos, 0);
-            spawnPositions.Add(spawnPos);
-        }
-
-        foreach (Vector3 spawnPos in spawnPositions)
-        {
-            Vector3Int cellPosition = grid.WorldToCell(spawnPos);
-            foreach(Tilemap tilemap in tilemaps)
-            {
-                if (tilemap.name == "Floor")
-                {
-                    foreach (Vector3Int coordinates in tilemap.cellBounds.allPositionsWithin)
-                    {
-                        if (cellPosition == coordinates)
-                        {
-                            
-                            
-                        }
-                    }
-                }
-                
-            }*/  
     }
 
     public void KillEnemy()

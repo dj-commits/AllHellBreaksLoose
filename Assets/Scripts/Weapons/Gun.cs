@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour
         // 2.5f is a decent position for the gunDirectionOffset, needs tweaking.
         GameObject bulletClone = Instantiate(bullet, gunPos + (gunDirection / gunDirectionOffset), rotation);
 
-        bulletClone.GetComponent<Rigidbody2D>().velocity = gunDirection * bulletClone.GetComponent<BulletLogic>().bulletSpeed;
+        bulletClone.GetComponent<Rigidbody2D>().velocity = gunDirection * bulletClone.GetComponent<BulletLogic>().GetBulletSpeed();
 
     }
 

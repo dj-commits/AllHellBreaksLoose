@@ -35,8 +35,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected bool canAttack;
 
+    protected ContactFilter2D movementFilter;
+    protected int wallLayer;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer spriteRenderer;
+    [SerializeField]
+    public float collisionOffset;
+
     protected GameObject player;
     protected EnemyManager em;
+    [SerializeField]
     protected List<GameObject> lootTable;
     protected Animator animator;
 
@@ -44,7 +52,11 @@ public class Enemy : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        movementFilter.useLayerMask = true;
+        movementFilter.layerMask = LayerMask.NameToLayer("Walls");
         em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         isAlive = true;
         canStalk = false;
@@ -54,11 +66,23 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void FixedUpdate()
+    public virtual void Update()
     {
+
         if (CheckForDeath())
         {
             Death();
+        }
+
+        if (this.transform.position.x > player.transform.position.x)
+        {
+            // player to the left
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            // player to the right
+            spriteRenderer.flipX = false;
         }
 
         if (CheckPlayerDeath())
@@ -74,7 +98,7 @@ public class Enemy : MonoBehaviour
             }
             
             
-            if (CheckAttackRange() && canAttack)
+            if (CheckAttackRange(player) && canAttack)
             {
                 Attack(player);
                 StartCoroutine(TimeUntilNextAttack());
@@ -84,11 +108,12 @@ public class Enemy : MonoBehaviour
 
     public virtual void Stalk(GameObject other)
     {        
-        if (!CheckAttackRange())
+        if (!CheckAttackRange(other))
         {
-            Vector2 direction = other.transform.position - transform.position;
+
+            Debug.DrawLine(this.transform.position, other.transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, Time.deltaTime);
             animator.SetBool("IsMoving", true);
-            transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime);
             StartCoroutine(TimeBetweenStalkTimer());
         }
     }
@@ -144,9 +169,13 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public virtual bool CheckAttackRange()
+    public virtual bool CheckAttackRange(GameObject other)
     {
-        if (Vector2.Distance(this.transform.position, player.transform.position) < attackRange)
+        // direction = heading / distance
+        Vector2 heading = other.transform.position - transform.position;
+        float distance = heading.magnitude;
+
+        if (distance < attackRange)
         {
             return true;
         }

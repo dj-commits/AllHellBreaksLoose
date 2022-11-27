@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d87ae657e3d5ee447be07985cc7b4166, type: 3}
+    - target: {fileID: 1967765776325554075, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3257256437271861800, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
@@ -93,8 +97,10 @@ MonoBehaviour:
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
   timeBetweenStalk: 1
-  timeUntilNextStalk: 5
+  timeUntilNextStalk: 1
   timeUntilNextAttack: 1
   canStalk: 0
   canAttack: 0
+  collisionOffset: 0
+  lootTable: []
   timeUntilSpawnFinished: 1

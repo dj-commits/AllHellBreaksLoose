@@ -18,11 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool isShielded;
 
-    public ContactFilter2D movementFilter;
-    [SerializeField]
-    public float collisionOffset;
-
     [SerializeField] public bool isAlive;
+    [SerializeField] private bool isGod;
 
     // GameObjects
     [SerializeField]
@@ -49,13 +46,16 @@ public class PlayerController : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         healthbar = GameObject.Find("PlayerHealthbar").GetComponent<Healthbar>();
-
+        if (isGod)
+        {
+            playerHealth = 1000000000000f;
+        }
         moveSpeedMultiplier = 1f;
         isAlive = true;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         // check for playerDeath
         if (playerHealth <= 0)
@@ -64,12 +64,26 @@ public class PlayerController : MonoBehaviour
             //Destroy(gameObject);
         }
 
+
+            // Shooting
+        if (Input.GetButton("Shoot"))
+        {
+            gun.Shoot();
+        }
+
+        // Use powerup
+        if (Input.GetButton("Interact"))
+        {
+            if (this.powerUp != null)
+            {
+                powerUp.GetComponent<Powerup>().ActivatePower();
+            }
+        }
+
         // Movement
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
         Vector2 movementInput = new Vector2(inputX, inputY);
-
-        List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -81,40 +95,17 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        int count = rb.Cast(
-            movementInput, // X and Y values between -1 and 1 that represent the direction from the body to look for collisions
-            movementFilter, // the settings that determine where a collision can occur on such as layers to collide with
-            castCollisions, // List of collisions to store the found collisions into after the Cast has finished
-            moveSpeed * Time.deltaTime + collisionOffset); //The amount to cast equal to the movement plus an offset
-        if (count == 1)
+        Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
+        movement *= Time.deltaTime;
+        if (movement != Vector2.zero)
         {
-            movementInput = Vector2.zero;
+            playerAnimator.SetBool("isMoving", true);
+            transform.Translate(movement, Space.World);
         }
         else
-        { 
-            rb.MovePosition(rb.position + movementInput * moveSpeed * Time.deltaTime); 
+        {
+            playerAnimator.SetBool("isMoving", false);
         }
-            
-
-            //Vector2 movement = new Vector2(inputX * moveSpeed * moveSpeedMultiplier, inputY * moveSpeed * moveSpeedMultiplier);
-            //movement *= Time.deltaTime;
-
-
-
-            // Shooting
-            if (Input.GetButton("Shoot"))
-            {
-                gun.Shoot();
-            }
-
-            // Use powerup
-            if (Input.GetButton("Interact"))
-            {
-                if (this.powerUp != null)
-                {
-                    powerUp.GetComponent<Powerup>().ActivatePower();
-                }
-            }
 
     }
 

@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6418062410fafad4a836b6a278858436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupTime: 15
-  powerUpType: 
+  powerupTime: 10
+  powerUpType: Shield
   chanceToDrop: 0.1
   isPickedUp: 0
   isActive: 0

@@ -190,6 +190,11 @@ public class BulletLogic : MonoBehaviour
         Physics2D.IgnoreCollision(thisCollider, otherCollider, disabled);
     }
 
+    public float GetBulletSpeed()
+    {
+        return bulletSpeed;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         //Debug.Log("Bullet hit: " + other.gameObject.tag);
