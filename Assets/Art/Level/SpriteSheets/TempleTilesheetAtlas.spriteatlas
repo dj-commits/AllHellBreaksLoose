@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TempleTilesheetAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 2
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 1
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -748955365, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 943721427, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -1623272956, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -1354921576, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -332314913, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 636506740, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -594228434, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -314786280, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -1986369849, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -918481579, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 1138196373, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 878177702, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 139791643, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 16498030, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 800268926, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -814235376, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 1559217418, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 1169888000, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 521967348, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -236368174, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 1688882129, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: 1473688857, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -593438958, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  - {fileID: -822752959, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - TempleTilesheet_22
+  - TempleTilesheet_23
+  - TempleTilesheet_20
+  - TempleTilesheet_21
+  - TempleTilesheet_8
+  - TempleTilesheet_9
+  - TempleTilesheet_4
+  - TempleTilesheet_5
+  - TempleTilesheet_6
+  - TempleTilesheet_7
+  - TempleTilesheet_0
+  - TempleTilesheet_1
+  - TempleTilesheet_2
+  - TempleTilesheet_3
+  - TempleTilesheet_17
+  - TempleTilesheet_16
+  - TempleTilesheet_15
+  - TempleTilesheet_14
+  - TempleTilesheet_13
+  - TempleTilesheet_12
+  - TempleTilesheet_11
+  - TempleTilesheet_10
+  - TempleTilesheet_19
+  - TempleTilesheet_18
+  m_RenderDataMap: {}
+  m_Tag: TempleTilesheetAtlas
+  m_IsVariant: 0

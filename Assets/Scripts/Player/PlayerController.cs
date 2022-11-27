@@ -24,8 +24,10 @@ public class PlayerController : MonoBehaviour
     // GameObjects
     [SerializeField]
     Powerup powerUp;
-    GameObject shield;
     Healthbar healthbar;
+
+    [SerializeField]
+    GameObject DmgText;
 
     // Components
     private Rigidbody2D rb;
@@ -125,6 +127,22 @@ public class PlayerController : MonoBehaviour
 
         playerHealth -= damage;
         healthbar.SetHealth(playerHealth);
+        this.GetComponent<SpriteRenderer>().color = Color.red;
+        StartCoroutine(DamagedAnimTimer());
+
+        if (damage > 0) {
+            GameObject dmgTextClone = Instantiate(DmgText, this.transform.position, Quaternion.identity);
+            DamageText newDmgText = dmgTextClone.GetComponent<DamageText>();
+            newDmgText.setText(damage);
+        }
+    }
+
+    float dmgAnimTimer = 0.1f;
+
+    IEnumerator DamagedAnimTimer()
+    {
+        yield return new WaitForSeconds(dmgAnimTimer);
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void setPowerup(Powerup powerUp)

@@ -12691,6 +12691,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3307049662404977812, guid: 39b8cf7e86a2bab4aaf57005958354bb, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1166860706984951197, guid: 39b8cf7e86a2bab4aaf57005958354bb, type: 3}
       propertyPath: m_Name
       value: priestEnemy
@@ -13057,6 +13061,10 @@ PrefabInstance:
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: movementFilter.layerMask.m_Bits
       value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
+      propertyPath: m_Mass
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: m_BodyType
