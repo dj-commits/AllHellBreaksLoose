@@ -145,6 +145,12 @@ public class Enemy : MonoBehaviour
 
     }
 
+
+    public virtual void Summon(GameObject summon)
+    {
+
+    }
+
     IEnumerator TimeUntilNextAttack()
     {
         yield return new WaitForSeconds(timeUntilNextAttack);
