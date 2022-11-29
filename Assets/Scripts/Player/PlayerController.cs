@@ -43,8 +43,7 @@ public class PlayerController : MonoBehaviour
 
     Gun gun;
 
-    [SerializeField]
-    private AudioSource hitSfx;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         moveSpeedMultiplier = 1f;
         isAlive = true;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DamagedAnimTimer());
 
         if (damage > 0) {
-            hitSfx.Play();
+            audioManager.Play("hitHurt");
             float dmgTextSpawnXOffset = Random.Range(.001f, .5f);
             float dmgTextSpawnYOffset = Random.Range(.001f, .7f);
             dmgTextSpawn = new Vector3(this.transform.position.x + dmgTextSpawnXOffset, this.transform.position.y + dmgTextSpawnYOffset, this.transform.position.z);

@@ -142,7 +142,6 @@ public class Enemy : MonoBehaviour
     public virtual void Attack(GameObject other)
     {
         //Debug.Log("Attacking: " + gameObject.name);
-        audioManager.Play("hitHurt");
         other.GetComponent<PlayerController>().TakeDamage(damage);
         canAttack = false;
 
