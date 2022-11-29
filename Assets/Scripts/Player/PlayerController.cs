@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -136,6 +137,7 @@ public class PlayerController : MonoBehaviour
             dmgTextSpawn = new Vector3(this.transform.position.x + dmgTextSpawnXOffset, this.transform.position.y + dmgTextSpawnYOffset, this.transform.position.z);
             dmgText.GetComponent<DamageText>().SetText(damage);
             Instantiate(dmgText, dmgTextSpawn, Quaternion.identity);
+
         }
     }
 

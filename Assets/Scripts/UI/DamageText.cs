@@ -14,11 +14,15 @@ public class DamageText : MonoBehaviour
 
     private bool started;
 
-    public TextMeshPro textMesh;
+    public TextMeshPro textField;
 
     private void Start()
     {
-        textMesh = GetComponent<TextMeshPro>();
+    }
+
+    private void Awake()
+    {
+        
     }
 
     private void Update()
@@ -35,20 +39,17 @@ public class DamageText : MonoBehaviour
 
     public void SetText(float damage)
     {
-        if(textMesh != null)
+        // for some reason, getting the TMP_Text or TextMeshPro component at runtime results in a NullReferenceException. Setting it to public and in the
+        // inspector fixes it. Not sure why.
+        if(textField != null)
         {
-            Debug.Log("textMesh ain't null!");
-            textMesh.SetText(damage.ToString());
+            textField.SetText(damage.ToString());
         }
         else
         {
-            Debug.Log("textMesh is TOTALLY null");
+            Debug.Log("textMesh is null");
         }
 
     }
 
-    public void CreateDamageText(float damage)
-    {
-
-    }
 }
