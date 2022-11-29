@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     protected float attackRange;
+    
 
     [SerializeField]
     protected float dropChance;
@@ -87,7 +88,7 @@ public class Enemy : MonoBehaviour
 
         if (CheckPlayerDeath())
         {
-            Debug.Log("Player died");
+            //Debug.Log("Player died");
         }
         else
         {
@@ -110,8 +111,6 @@ public class Enemy : MonoBehaviour
     {        
         if (!CheckAttackRange(other))
         {
-
-            Debug.DrawLine(this.transform.position, other.transform.position);
             transform.position = Vector3.MoveTowards(transform.position, other.transform.position, Time.deltaTime);
             animator.SetBool("IsMoving", true);
             StartCoroutine(TimeBetweenStalkTimer());
@@ -139,17 +138,14 @@ public class Enemy : MonoBehaviour
 
     public virtual void Attack(GameObject other)
     {
-        Debug.Log("Attacking: " + gameObject.name);
+        //Debug.Log("Attacking: " + gameObject.name);
         other.GetComponent<PlayerController>().TakeDamage(damage);
         canAttack = false;
 
     }
 
 
-    public virtual void Summon(GameObject summon)
-    {
-
-    }
+    
 
     IEnumerator TimeUntilNextAttack()
     {
@@ -216,8 +212,12 @@ public class Enemy : MonoBehaviour
             //Increment drop chance for default enemy object that gets cloned from
             //So that each enemy that gets cloned gets a slightly higher drop chance
             GameObject enemy = em.getEnemyObject(gameObject.name);
-            Enemy enemyLogic = enemy.GetComponent<Enemy>();
-            enemyLogic.IncrementDropChance();
+            if (enemy != null)
+            {
+                Enemy enemyLogic = enemy.GetComponent<Enemy>();
+                enemyLogic.IncrementDropChance();
+            }
+            
         }
         
     }

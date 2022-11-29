@@ -9,27 +9,44 @@ public class PriestEnemy : Enemy
     [SerializeField]
     List<Vector3> summonSpawnPos;
     [SerializeField]
-    SpriteRenderer spawnArea;
+    float summonRange;
+    [SerializeField]
+    float timeUntilNextSummon;
+    [SerializeField]
+    bool canSummon;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        spawnArea = GetComponentInChildren<SpriteRenderer>();
+        StartCoroutine(SummonIntervalTimer());
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
+        if (canSummon)
+        {
+            Summon(skullEnemy);
+            canSummon = false;
+        }
     }
 
-    public override void Summon(GameObject summon)
+    public void Summon(GameObject summon)
     {
-        summonSpawnPos = new List<Vector3>();
+        float randomSummonFloat = Random.Range(-1, summonRange);
+        Vector3 summonSpawnPos = this.transform.position * randomSummonFloat;
         animator.SetBool("IsSummoning", true);
-        //GameObject bulletClone = Instantiate(bullet, this.transform.position, Quaternion.identity);
-        //StartCoroutine(ShotAnimTimer(bulletClone, direction));
+        GameObject summonClone = Instantiate(summon, summonSpawnPos, Quaternion.identity);
+        StartCoroutine(SummonIntervalTimer());
+    }
+
+    IEnumerator SummonIntervalTimer()
+    {
+        yield return new WaitForSeconds(timeUntilNextSummon);
+        canSummon = true;
+        
     }
     
 

@@ -92,8 +92,8 @@ MonoBehaviour:
   health: 10
   damage: 10
   isAlive: 0
-  attackRange: 1
-  dropChance: 0.6000001
+  attackRange: 0.2
+  dropChance: 0.05
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
   timeBetweenStalk: 1

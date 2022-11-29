@@ -135,8 +135,8 @@ MonoBehaviour:
   dropChance: 0.5
   defaultDropChance: 0.1
   dropChanceIncrementValue: 0.1
-  timeBetweenStalk: 1
-  timeUntilNextStalk: 1
+  timeBetweenStalk: 1.5
+  timeUntilNextStalk: 3
   timeUntilNextAttack: 3
   canStalk: 0
   canAttack: 0

@@ -14,22 +14,17 @@ public class DamageText : MonoBehaviour
 
     private bool started;
 
-    private TextMeshPro textMesh;
+    public TextMeshPro textMesh;
 
     private void Start()
     {
+        textMesh = GetComponent<TextMeshPro>();
     }
 
     private void Update()
     {
-        if (!started) {
-            StartCoroutine(DamagedAnimTimer());
-            started = true;
-        }
-        else
-        {
-            transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
-        }
+        transform.position = Vector3.MoveTowards(transform.position, transform.position * 2, lifeTimer * Time.deltaTime);
+        StartCoroutine(DamagedAnimTimer());
     }
 
     IEnumerator DamagedAnimTimer()
@@ -38,8 +33,22 @@ public class DamageText : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void setText(float damage)
+    public void SetText(float damage)
     {
-        this.textMesh.SetText(damage.ToString());
+        if(textMesh != null)
+        {
+            Debug.Log("textMesh ain't null!");
+            textMesh.SetText(damage.ToString());
+        }
+        else
+        {
+            Debug.Log("textMesh is TOTALLY null");
+        }
+
+    }
+
+    public void CreateDamageText(float damage)
+    {
+
     }
 }

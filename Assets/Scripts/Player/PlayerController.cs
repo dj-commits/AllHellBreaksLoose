@@ -21,18 +21,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool isAlive;
     [SerializeField] private bool isGod;
 
+    Vector3 dmgTextSpawn;
+
     // GameObjects
     [SerializeField]
     Powerup powerUp;
     Healthbar healthbar;
 
     [SerializeField]
-    GameObject DmgText;
+    GameObject dmgText;
 
     // Components
     private Rigidbody2D rb;
     private Animator playerAnimator;
-    private BoxCollider2D collider;
 
     // Vectors
     Vector2 playerPosition;
@@ -45,7 +46,6 @@ public class PlayerController : MonoBehaviour
     {
         gun = GameObject.Find("gun").GetComponent<Gun>();
         playerAnimator = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         healthbar = GameObject.Find("PlayerHealthbar").GetComponent<Healthbar>();
         if (isGod)
@@ -131,9 +131,11 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DamagedAnimTimer());
 
         if (damage > 0) {
-            GameObject dmgTextClone = Instantiate(DmgText, this.transform.position, Quaternion.identity);
-            DamageText newDmgText = dmgTextClone.GetComponent<DamageText>();
-            newDmgText.setText(damage);
+            float dmgTextSpawnXOffset = Random.Range(.001f, .5f);
+            float dmgTextSpawnYOffset = Random.Range(.001f, .7f);
+            dmgTextSpawn = new Vector3(this.transform.position.x + dmgTextSpawnXOffset, this.transform.position.y + dmgTextSpawnYOffset, this.transform.position.z);
+            dmgText.GetComponent<DamageText>().SetText(damage);
+            Instantiate(dmgText, dmgTextSpawn, Quaternion.identity);
         }
     }
 
@@ -187,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     public BoxCollider2D getCollider()
     {
-        return this.collider;
+        return this.GetComponent<BoxCollider2D>();
     }
 
 

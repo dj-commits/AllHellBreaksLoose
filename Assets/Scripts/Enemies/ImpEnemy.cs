@@ -50,7 +50,6 @@ public class ImpEnemy : Enemy
 
     IEnumerator ShotAnimTimer(GameObject bullet, Vector2 direction)
     {
-        // move this to base class if Imp gets a spawn anim
         yield return new WaitForSeconds(timeUntilShotAnimFinished);
         animator.SetBool("IsShooting", false);
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<ImpShot>().GetBulletSpeed();
