@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -202003687334461332}
   - component: {fileID: -2480062018961980514}
   - component: {fileID: -1355058512563098944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: priestEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 13a4d3b63949a6c48998e8a52367c5d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,15 +100,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &-202003687334461332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.16193052, y: 0.081623524}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.51353776, y: 0.8268663}
   m_EdgeRadius: 0
 --- !u!95 &-2480062018961980514
 Animator:
@@ -169,17 +169,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   moveSpeedMultiplier: 0
-  health: 50
+  health: 150
   damage: 50
   isAlive: 0
   attackRange: 1
   dropChance: 0.05
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
-  timeBetweenStalk: 1
-  timeUntilNextStalk: 1
-  timeUntilNextAttack: 1
+  timeBetweenStalk: 3
+  timeUntilNextStalk: 3
+  timeUntilNextAttack: 3
   canStalk: 0
   canAttack: 0
   collisionOffset: 0
   lootTable: []
+  skullEnemy: {fileID: 0}
+  summonSpawnPos: []
+  summonRange: 1.5
+  timeUntilNextSummon: 2
+  canSummon: 0

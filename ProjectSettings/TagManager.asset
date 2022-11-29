@@ -12,6 +12,8 @@ TagManager:
   - Walls
   - Floor
   - Lava
+  - BossSpawn
+  - Leather
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Shield
   - Walls
   - Lava
-  - 
+  - BossSpawn
   - 
   - 
   - 

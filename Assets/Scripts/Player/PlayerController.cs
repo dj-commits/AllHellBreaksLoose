@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Powerup powerUp;
     Healthbar healthbar;
+    GameManager gameManager;
 
     [SerializeField]
     GameObject dmgText;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gun = GameObject.Find("gun").GetComponent<Gun>();
         playerAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -197,5 +199,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "BossSpawn")
+        {
+            gameManager.BossSpawnTrigger();
+        }
     }
 }

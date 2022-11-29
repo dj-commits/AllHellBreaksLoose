@@ -75,6 +75,7 @@ SpriteAtlas:
   - {fileID: -593438958, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
   - {fileID: -822752959, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
   - {fileID: 21300000, guid: 6659dbfa50e0f0b47a0890750d7582f4, type: 3}
+  - {fileID: 21300000, guid: 10b3827eacf84f74c84869dbc9751757, type: 3}
   m_PackedSpriteNamesToIndex:
   - TempleTilesheet_22
   - TempleTilesheet_23
@@ -101,6 +102,7 @@ SpriteAtlas:
   - TempleTilesheet_19
   - TempleTilesheet_18
   - Temple
+  - POSTER
   m_RenderDataMap: {}
   m_Tag: TilesetSpriteAtlas
   m_IsVariant: 0

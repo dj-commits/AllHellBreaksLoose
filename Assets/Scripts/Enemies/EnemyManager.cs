@@ -7,21 +7,29 @@ public class EnemyManager : MonoBehaviour
 {
     
     List<GameObject> enemyObjects;
+    public List<GameObject> bossEnemyObjects;
     Camera cam;
     [SerializeField] int maxEnemies;
     Grid grid;
     Component[] tilemaps;
     List<Vector3> spawnPositions;
     private int enemyCount;
+    Transform bossSpawnPos;
+    GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        bossSpawnPos = GameObject.Find("BossSpawnLocation").GetComponent<Transform>();
         enemyObjects = new List<GameObject>();
+        bossEnemyObjects = new List<GameObject>();
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         tilemaps = grid.GetComponentsInChildren<Tilemap>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         GameObject impEnemy = Resources.Load("Prefabs/Enemies/imp/impEnemy", typeof(GameObject)) as GameObject;
         GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skull/skullEnemy", typeof(GameObject)) as GameObject;
+        GameObject bossEnemy = Resources.Load("Prefabs/Enemies/priest/priestEnemy", typeof(GameObject)) as GameObject;
+        bossEnemyObjects.Add(bossEnemy);
         enemyObjects.Add(impEnemy);
         enemyObjects.Add(skullEnemy);
         enemyCount = 0;
@@ -35,7 +43,10 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if(enemyCount <= 0)
+        {
+            gameManager.OpenBossDoor();
+        }
     }
 
     private List<Vector3> InitSpawnPositions()
@@ -69,6 +80,11 @@ public class EnemyManager : MonoBehaviour
         enemyCount++;
     }
 
+    public void SpawnBoss()
+    {
+        Instantiate(bossEnemyObjects[0], bossSpawnPos.position, Quaternion.identity);
+    }
+
     public void KillEnemy()
     {
         enemyCount--;
@@ -84,5 +100,10 @@ public class EnemyManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public int GetEnemyCount()
+    {
+        return enemyCount;
     }
 }
