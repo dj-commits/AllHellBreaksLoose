@@ -10,6 +10,10 @@ public class Door : MonoBehaviour
     private Vector3 finalDoorPos;
     [SerializeField]
     float doorOpenYOffset;
+
+    [SerializeField]
+    private AudioSource doorOpenSfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,7 @@ public class Door : MonoBehaviour
 
     public void SetDoorLockStatus(bool tf)
     {
+        
         this.isLocked = tf;
     }
 
@@ -50,6 +55,10 @@ public class Door : MonoBehaviour
 
     public void SetDoorOpenStatus(bool tf)
     {
+        if (tf == true && doorOpenSfx != null)
+        {
+            doorOpenSfx.Play();
+        }
         this.isOpen = tf;
     }
 }

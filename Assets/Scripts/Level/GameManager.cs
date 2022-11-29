@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     PlayerController playerController;
     BoxCollider2D bossSpawnCollider;
 
-
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,14 @@ public class GameManager : MonoBehaviour
         bossDoor = GameObject.Find("BossDoor").GetComponent<Door>();
         em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void OpenBossDoor()
     {
+        audioManager.Play("doorOpen");
+        audioManager.Stop("levelMusic");
+        audioManager.Play("bossMusic");
         bossDoor.SetDoorLockStatus(false);
     }
 

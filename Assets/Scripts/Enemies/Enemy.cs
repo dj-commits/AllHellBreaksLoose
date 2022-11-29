@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
     protected List<GameObject> lootTable;
     protected Animator animator;
 
+    AudioManager audioManager;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
         canStalk = false;
         canAttack = true;
         lootTable = new List<GameObject>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         StartCoroutine(TimeUntilNextStalkTimer());
     }
 
@@ -139,6 +142,7 @@ public class Enemy : MonoBehaviour
     public virtual void Attack(GameObject other)
     {
         //Debug.Log("Attacking: " + gameObject.name);
+        audioManager.Play("hitHurt");
         other.GetComponent<PlayerController>().TakeDamage(damage);
         canAttack = false;
 
@@ -155,6 +159,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Death()
     {
+        audioManager.Play("explosionDeath");
         LootDrop();
         isAlive = false;
         em.KillEnemy();

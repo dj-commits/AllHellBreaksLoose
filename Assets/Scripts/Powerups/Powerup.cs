@@ -28,6 +28,8 @@ public class Powerup : MonoBehaviour
     public bool isActive;
     public float lifeTimer;
 
+    AudioManager audioManager;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -35,6 +37,7 @@ public class Powerup : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class Powerup : MonoBehaviour
 
     public virtual void ActivatePower()
     {
+        audioManager.Play("powerUp");
         this.isActive = true;
         this.getPlayerController().setPowerup(null);
         StartCoroutine(setPowerupTimer());

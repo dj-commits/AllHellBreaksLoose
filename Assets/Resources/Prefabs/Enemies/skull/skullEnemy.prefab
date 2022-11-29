@@ -67,6 +67,18 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1972598245507137927, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d57a307e025bbaf4f9cedb8c51c96437, type: 3}
+    - target: {fileID: 1972598245507137927, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416527461492976201, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3257256437271861800, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
@@ -93,7 +105,7 @@ MonoBehaviour:
   damage: 10
   isAlive: 0
   attackRange: 0.2
-  dropChance: 0.05
+  dropChance: 0.2
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
   timeBetweenStalk: 1
@@ -103,4 +115,16 @@ MonoBehaviour:
   canAttack: 0
   collisionOffset: 0
   lootTable: []
+  deathSfx: {fileID: 4323085961006810297}
+  attackSfx: {fileID: 5076242941781929847}
   timeUntilSpawnFinished: 1
+--- !u!82 &4323085961006810297 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1972598245507137927, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+  m_PrefabInstance: {fileID: 2350523184413476158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5076242941781929847 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7416527461492976201, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
+  m_PrefabInstance: {fileID: 2350523184413476158}
+  m_PrefabAsset: {fileID: 0}

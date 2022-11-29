@@ -20,10 +20,13 @@ public class Gun : MonoBehaviour
 
     Sprite defaultSprite;
 
+    AudioManager audioManager;
+
     void Start()
     {
         canShoot = true;
         defaultSprite = this.GetComponent<SpriteRenderer>().sprite;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -43,6 +46,7 @@ public class Gun : MonoBehaviour
     {
         if (canShoot)
         {
+            audioManager.Play("laserShoot");
             CreateBullet();
             canShoot = false;
             StartCoroutine(shootWaitTimer());

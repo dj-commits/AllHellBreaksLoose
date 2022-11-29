@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     Gun gun;
 
+    [SerializeField]
+    private AudioSource hitSfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,13 +130,14 @@ public class PlayerController : MonoBehaviour
         {
             damage = 0;
         }
-
+        
         playerHealth -= damage;
         healthbar.SetHealth(playerHealth);
         this.GetComponent<SpriteRenderer>().color = Color.red;
         StartCoroutine(DamagedAnimTimer());
 
         if (damage > 0) {
+            hitSfx.Play();
             float dmgTextSpawnXOffset = Random.Range(.001f, .5f);
             float dmgTextSpawnYOffset = Random.Range(.001f, .7f);
             dmgTextSpawn = new Vector3(this.transform.position.x + dmgTextSpawnXOffset, this.transform.position.y + dmgTextSpawnYOffset, this.transform.position.z);
