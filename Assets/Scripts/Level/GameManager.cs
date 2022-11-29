@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
     public void OpenBossDoor()
     {
         audioManager.Play("doorOpen");
-        audioManager.Stop("levelMusic");
-        audioManager.Play("bossMusic");
         bossDoor.SetDoorLockStatus(false);
     }
 
     public void BossSpawnTrigger()
     {
+        audioManager.Stop("levelMusic");
+        audioManager.Play("bossMusic");
         em.SpawnBoss();
     }
 
