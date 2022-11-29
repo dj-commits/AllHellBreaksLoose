@@ -21,12 +21,6 @@ public class GameManager : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    public void OpenBossDoor()
-    {
-        audioManager.Play("doorOpen");
-        bossDoor.SetDoorLockStatus(false);
-    }
-
     public void BossSpawnTrigger()
     {
         audioManager.Stop("levelMusic");

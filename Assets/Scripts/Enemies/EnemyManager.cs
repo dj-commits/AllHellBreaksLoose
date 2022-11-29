@@ -43,10 +43,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        if(enemyCount <= 0)
-        {
-            gameManager.OpenBossDoor();
-        }
+        
     }
 
     private List<Vector3> InitSpawnPositions()

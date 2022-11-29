@@ -11,6 +11,8 @@ public class Door : MonoBehaviour
     [SerializeField]
     float doorOpenYOffset;
 
+    EnemyManager em;
+
     AudioManager audioManager;
 
     // Start is called before the first frame update
@@ -20,11 +22,18 @@ public class Door : MonoBehaviour
         isOpen = false;
         finalDoorPos = new Vector3(transform.position.x, transform.position.y + doorOpenYOffset, transform.position.z);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (em.GetEnemyCount() <= 0 && !isOpen && isLocked)
+        {
+            audioManager.Play("doorOpen");
+            this.isLocked = false;
+        }
         
         if (!isLocked && !isOpen)
         {
@@ -55,10 +64,6 @@ public class Door : MonoBehaviour
 
     public void SetDoorOpenStatus(bool tf)
     {
-        if (tf == true)
-        {
-            audioManager.Play("doorOpen");
-        }
         this.isOpen = tf;
     }
 }
