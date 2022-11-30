@@ -12,8 +12,6 @@ public class DamageText : MonoBehaviour
     [SerializeField]
     float moveYSpeed;
 
-    private bool started;
-
     public TextMeshPro textField;
 
     private void Start()

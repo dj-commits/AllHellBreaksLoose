@@ -29,17 +29,12 @@ public class PlayerController : MonoBehaviour
     Powerup powerUp;
     Healthbar healthbar;
     GameManager gameManager;
+    UIManager uiManager;
 
     [SerializeField]
     GameObject dmgText;
 
-    // Components
-    private Rigidbody2D rb;
     private Animator playerAnimator;
-
-    // Vectors
-    Vector2 playerPosition;
-    Vector3 mousePosition;
 
     Gun gun;
 
@@ -49,9 +44,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         gun = GameObject.Find("gun").GetComponent<Gun>();
         playerAnimator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         healthbar = GameObject.Find("PlayerHealthbar").GetComponent<Healthbar>();
         if (isGod)
         {
@@ -138,11 +133,7 @@ public class PlayerController : MonoBehaviour
 
         if (damage > 0) {
             audioManager.Play("hitHurt");
-            float dmgTextSpawnXOffset = Random.Range(.001f, .5f);
-            float dmgTextSpawnYOffset = Random.Range(.001f, .7f);
-            dmgTextSpawn = new Vector3(this.transform.position.x + dmgTextSpawnXOffset, this.transform.position.y + dmgTextSpawnYOffset, this.transform.position.z);
-            dmgText.GetComponent<DamageText>().SetText(damage);
-            Instantiate(dmgText, dmgTextSpawn, Quaternion.identity);
+            uiManager.CreateDamageText(this.transform.position, damage);
 
         }
     }

@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [Range(0, 1f)]
     float globalVolume;
 
+
     // Start is called before the first frame update
     void Awake ()
     {
@@ -31,7 +32,7 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            s.source.volume = initVolume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
