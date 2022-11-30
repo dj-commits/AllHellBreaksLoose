@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    [SerializeField]
+    [Range(0, 1f)]
+    float globalVolume;
+
     // Start is called before the first frame update
     void Awake ()
     {
@@ -36,12 +40,18 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         Play("levelMusic");
+        resetVolumes();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnValidate()
+    {
+        resetVolumes();
     }
 
     public void Play(string name)
@@ -52,6 +62,28 @@ public class AudioManager : MonoBehaviour
             {
                 s.source.Play();
                 return;
+            }
+        }
+    }
+
+    public float getGlobalVolume()
+    {
+        return globalVolume;
+    }
+
+    public void setGlobalVolume(float globalVolume)
+    {
+        this.globalVolume = globalVolume;
+        resetVolumes();
+    }
+
+    public void resetVolumes()
+    {
+        if (sounds != null)
+        {
+            foreach (Sound s in sounds)
+            {
+                if (s.source != null) s.source.volume = s.volume * globalVolume;
             }
         }
     }
