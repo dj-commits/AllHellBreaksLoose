@@ -8807,7 +8807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossEnemyObjects: []
-  maxEnemies: 5
+  maxEnemies: 10
 --- !u!4 &818208892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 742910792799440460, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
@@ -9512,16 +9512,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 2
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 28, y: 7, z: 0}
     second:
       serializedVersion: 2
@@ -9542,16 +9532,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 9, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 2
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 28, y: 9, z: 0}
     second:
       serializedVersion: 2
@@ -9568,16 +9548,6 @@ Tilemap:
       m_TileIndex: 2
       m_TileSpriteIndex: 2
       m_TileMatrixIndex: 1
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 11, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -11218,7 +11188,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 74
     m_Data: {fileID: 11400000, guid: 0e0ed8c0e9c3bd3419ac5af7861a55cd, type: 2}
-  - m_RefCount: 77
+  - m_RefCount: 74
     m_Data: {fileID: 11400000, guid: 2c382722757c044429777c8844b8424d, type: 2}
   - m_RefCount: 73
     m_Data: {fileID: 11400000, guid: 688c893c79698fa4ea7edfb22adbd9b4, type: 2}
@@ -11231,7 +11201,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 74
     m_Data: {fileID: -822752959, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
-  - m_RefCount: 77
+  - m_RefCount: 74
     m_Data: {fileID: 1559217418, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
   - m_RefCount: 73
     m_Data: {fileID: -593438958, guid: f0e42bf85bbc01942b0f4cca2aa848db, type: 3}
@@ -11276,7 +11246,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 40
+  - m_RefCount: 37
     m_Data:
       e00: 1
       e01: 0
@@ -11349,7 +11319,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 229
+  - m_RefCount: 226
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -22524,11 +22494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ab41fbb1456ea44bd41259486e9f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTimer: 0
-  moveYSpeed: 0
+  lifeTimer: 1
   textField: {fileID: 6092087831490087785, guid: 319c59c918eb0d649946eb5cc6cb67fd, type: 3}
   damageText: {fileID: 4052177579897196977, guid: 319c59c918eb0d649946eb5cc6cb67fd, type: 3}
-  yMovement: 0.402
+  yMovement: 1.5
 --- !u!1 &1275985319
 GameObject:
   m_ObjectHideFlags: 0
@@ -68200,6 +68169,7 @@ GameObject:
   - component: {fileID: 1396676094}
   - component: {fileID: 1396676093}
   - component: {fileID: 1396676096}
+  - component: {fileID: 1396676097}
   m_Layer: 12
   m_Name: BossDoor
   m_TagString: Walls
@@ -68224,7 +68194,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -68274,7 +68244,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0d93fc73f602b84bb3e3b537e33ae22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -68293,8 +68263,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396676092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.4112496, y: -4.753551, z: 0.025051434}
-  m_LocalScale: {x: 0.5625, y: 2.025, z: 1}
+  m_LocalPosition: {x: 0.44, y: -2.66, z: 0.025051434}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 531371413}
@@ -68313,6 +68283,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorOpenYOffset: 3
+--- !u!95 &1396676097
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396676092}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1432979484
 GameObject:
   m_ObjectHideFlags: 0
@@ -68412,7 +68402,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  initVolume: 0
+  globalVolume: 0.5
 --- !u!1 &2142379681
 GameObject:
   m_ObjectHideFlags: 0

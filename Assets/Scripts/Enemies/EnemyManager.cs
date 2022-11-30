@@ -27,11 +27,11 @@ public class EnemyManager : MonoBehaviour
         tilemaps = grid.GetComponentsInChildren<Tilemap>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         GameObject impEnemy = Resources.Load("Prefabs/Enemies/imp/impEnemy", typeof(GameObject)) as GameObject;
-        GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skull/skullEnemy", typeof(GameObject)) as GameObject;
+        //GameObject skullEnemy = Resources.Load("Prefabs/Enemies/skull/skullEnemy", typeof(GameObject)) as GameObject;
         GameObject bossEnemy = Resources.Load("Prefabs/Enemies/priest/priestEnemy", typeof(GameObject)) as GameObject;
         bossEnemyObjects.Add(bossEnemy);
         enemyObjects.Add(impEnemy);
-        enemyObjects.Add(skullEnemy);
+        //enemyObjects.Add(skullEnemy);
         enemyCount = 0;
         spawnPositions = InitSpawnPositions();
         while (enemyCount < maxEnemies)

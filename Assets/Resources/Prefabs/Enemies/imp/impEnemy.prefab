@@ -131,7 +131,7 @@ MonoBehaviour:
   health: 10
   damage: 10
   isAlive: 0
-  attackRange: 1.75
+  attackRange: 0.2
   dropChance: 0.5
   defaultDropChance: 0.1
   dropChanceIncrementValue: 0.1
@@ -143,7 +143,8 @@ MonoBehaviour:
   collisionOffset: 0
   lootTable: []
   bullet: {fileID: 5161597224244225944, guid: a05799ca93a94c246995d9a894cb0dde, type: 3}
-  timeUntilShotAnimFinished: 1
+  timeUntilShotAnimFinished: 0.8
+  shootAttackRange: 1.75
 --- !u!95 &-3278650902049929052
 Animator:
   serializedVersion: 4

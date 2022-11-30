@@ -8,6 +8,8 @@ public class ImpEnemy : Enemy
     GameObject bullet;
     [SerializeField]
     float timeUntilShotAnimFinished;
+    [SerializeField]
+    float shootAttackRange;
 
 
 
@@ -29,8 +31,6 @@ public class ImpEnemy : Enemy
     public override void Update()
     {
         base.Update();
-        
-            
     }
 
     public override void Death()
@@ -41,11 +41,23 @@ public class ImpEnemy : Enemy
 
     public override void Attack(GameObject other)
     {
+        if (CheckForShootingRange(other))
+        {
+            Shoot(other);
+        }else
+        {
+            base.Attack(other);
+        }
+
+
+    }
+
+    public virtual void Shoot(GameObject other)
+    {
         Vector2 direction = other.transform.position - transform.position;
         animator.SetBool("IsShooting", true);
         GameObject bulletClone = Instantiate(bullet, this.transform.position, Quaternion.identity);
         StartCoroutine(ShotAnimTimer(bulletClone, direction));
-        base.Attack(other);
     }
 
     IEnumerator ShotAnimTimer(GameObject bullet, Vector2 direction)
@@ -53,6 +65,19 @@ public class ImpEnemy : Enemy
         yield return new WaitForSeconds(timeUntilShotAnimFinished);
         animator.SetBool("IsShooting", false);
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<ImpShot>().GetBulletSpeed();
+    }
+
+    public bool CheckForShootingRange(GameObject other)
+    {
+        // direction = heading / distance
+        Vector2 heading = other.transform.position - transform.position;
+        float distance = heading.magnitude;
+
+        if (distance < shootAttackRange)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

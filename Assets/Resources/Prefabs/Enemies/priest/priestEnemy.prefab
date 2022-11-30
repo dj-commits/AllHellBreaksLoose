@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   moveSpeedMultiplier: 0
-  health: 150
+  health: 600
   damage: 50
   isAlive: 0
   attackRange: 1
@@ -183,10 +183,9 @@ MonoBehaviour:
   canAttack: 0
   collisionOffset: 0
   lootTable: []
-  deathSfx: {fileID: -4307405221399961678}
-  attackSfx: {fileID: 0}
   skullEnemy: {fileID: 3561234262390977222, guid: a329ced1ca514964fb57e080e7b8d7be, type: 3}
   summonSpawnPos: []
   summonRange: 4
   timeUntilNextSummon: 5
+  timeUntilSummonAnimFinished: 0
   canSummon: 0

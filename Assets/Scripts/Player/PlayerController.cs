@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            playerAnimator.SetBool("isMoving", false);
+            //playerAnimator.SetBool("isMoving", false);
         }
 
     }

@@ -188,6 +188,8 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
+    
+
     public virtual bool CheckPlayerDeath()
     {
         if (player.GetComponent<PlayerController>().GetPlayerHealth() <= 0)
