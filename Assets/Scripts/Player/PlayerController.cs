@@ -64,9 +64,9 @@ public class PlayerController : MonoBehaviour
         if (playerHealth <= 0)
         {
             isAlive = false;
-            //Destroy(gameObject);
+            GameObject.Find("UIManager").GetComponent<UIManager>().ActivateGameOverMenu();
+            return;
         }
-
 
             // Shooting
         if (Input.GetButton("Shoot"))

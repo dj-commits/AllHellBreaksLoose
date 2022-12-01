@@ -16,11 +16,13 @@ public class UIManager : MonoBehaviour
     [Range(.1f, 3f)]
     float yMovement;
 
+    private GameObject gameOverMenu;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameOverMenu = GameObject.Find("GameOver");
+        gameOverMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,6 +40,12 @@ public class UIManager : MonoBehaviour
         dmgTextSpawn = new Vector3(dmgTextSpawn.x + dmgTextSpawnXOffset, dmgTextSpawn.y + dmgTextSpawnYOffset, dmgTextSpawn.z);
         textField.SetText(damage.ToString());
         GameObject dmgTextClone = Instantiate(damageText, dmgTextSpawn, Quaternion.identity);
+    }
+
+    public void ActivateGameOverMenu()
+    {
+        gameOverMenu.SetActive(true);
+        Cursor.visible = true;
     }
 
     public float GetYMoveSpeed()
