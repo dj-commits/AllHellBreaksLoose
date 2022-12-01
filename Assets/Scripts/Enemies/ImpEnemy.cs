@@ -63,14 +63,15 @@ public class ImpEnemy : Enemy
         Vector2 direction = other.transform.position - transform.position;
         animator.SetBool("IsShooting", true);
         GameObject bulletClone = Instantiate(bullet, this.transform.position, Quaternion.identity);
-        StartCoroutine(ShotAnimTimer(bulletClone, direction));
+        float bulletCloneSpeed = bulletClone.GetComponent<ImpShot>().GetBulletSpeed();
+        StartCoroutine(ShotAnimTimer(bulletClone, direction, bulletCloneSpeed));
     }
 
-    IEnumerator ShotAnimTimer(GameObject bullet, Vector2 direction)
+    IEnumerator ShotAnimTimer(GameObject bullet, Vector2 direction, float speed)
     {
         yield return new WaitForSeconds(timeUntilShotAnimFinished);
         animator.SetBool("IsShooting", false);
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<ImpShot>().GetBulletSpeed();
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
         StartCoroutine(TimeUntilNextShotTimer());
         
     }

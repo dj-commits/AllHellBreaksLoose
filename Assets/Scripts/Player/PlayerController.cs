@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         // check for playerDeath
         if (playerHealth <= 0)
         {
+            isAlive = false;
             playerAnimator.SetBool("isDying", true);
             SpriteRenderer gunSprite = gun.gameObject.GetComponent<SpriteRenderer>();
             gunSprite.enabled = false;
