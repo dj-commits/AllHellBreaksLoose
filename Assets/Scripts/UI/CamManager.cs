@@ -14,7 +14,7 @@ public class CamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCam = GameObject.Find("CMvCam").GetComponent<CinemachineVirtualCamera>();
+        mainCam = GameObject.Find("CMvcam").GetComponent<CinemachineVirtualCamera>();
         bossCam = GameObject.Find("CMBossDoor").GetComponent<CinemachineVirtualCamera>();
     }
 
