@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    private CamManager camManager;
     private bool isLocked;
     private bool isOpen;
     private Vector3 finalDoorPos;
@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camManager = GameObject.Find("CamManager").GetComponent<CamManager>();
         isLocked = true;
         isOpen = false;
         finalDoorPos = new Vector3(transform.position.x, transform.position.y + doorOpenYOffset, transform.position.z);
@@ -34,13 +35,13 @@ public class Door : MonoBehaviour
 
         if (em.GetEnemyCount() <= 0 && !isOpen && isLocked)
         {
-            audioManager.Play("doorOpen");
+            
             this.isLocked = false;
         }
         
         if (!isLocked && !isOpen)
         {
-            OpenningDoor();
+            OpeningDoor();
         }
         if(transform.position == finalDoorPos && !isOpen)
         {
@@ -48,15 +49,24 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void OpenningDoor()
+    public void OpeningDoor()
     {
-        doorAnimator.SetBool("isOpenning", true);
-        StartCoroutine(OpenningDoorTimer());
+        camManager.FocusOnDoor();
+        StartCoroutine(CameraTransitionTimer());
+        
     }
 
+    IEnumerator CameraTransitionTimer()
+    {
+        yield return new WaitForSeconds(2);
+        audioManager.Play("doorOpen");
+        doorAnimator.SetBool("isOpening", true);
+        StartCoroutine(OpenningDoorTimer());
+    }
     IEnumerator OpenningDoorTimer()
     {
         yield return new WaitForSeconds(2);
+        camManager.FocusOnPlayer();
         Destroy(gameObject);
     }
 
