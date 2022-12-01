@@ -36,12 +36,15 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected bool canAttack;
 
+    protected bool isStopped;
+
     protected ContactFilter2D movementFilter;
     protected int wallLayer;
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
     [SerializeField]
     public float collisionOffset;
+
 
     protected GameObject player;
     protected EnemyManager em;
@@ -98,7 +101,7 @@ public class Enemy : MonoBehaviour
             if (canStalk)
             {
                 Stalk(player);
-                StartCoroutine(TimeUntilNextStalkTimer());
+                
             }
             
             
@@ -114,6 +117,7 @@ public class Enemy : MonoBehaviour
     {        
         if (!CheckAttackRange(other))
         {
+            isStopped = false;
             transform.position = Vector3.MoveTowards(transform.position, other.transform.position, Time.deltaTime);
             animator.SetBool("IsMoving", true);
             StartCoroutine(TimeBetweenStalkTimer());
@@ -131,7 +135,9 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenStalk);
         canStalk = false;
         animator.SetBool("IsMoving", false);
-        
+        isStopped = true;
+        StartCoroutine(TimeUntilNextStalkTimer());
+
     }
 
     public virtual void TakeDamage(float damage)

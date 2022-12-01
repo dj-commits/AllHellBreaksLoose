@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: cec56db196d18b84d89c981fbacff324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,11 +100,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d8f53547abe713e43aea1b95e52ae2df, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014541298, y: -0.011086389}
+  m_Offset: {x: -0.014541298, y: -0.00028325617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3152141, y: 0.29940033}
+  m_Size: {x: 0.3152141, y: 0.3210066}
   m_EdgeRadius: 0
 --- !u!114 &742910792799440462
 MonoBehaviour:
@@ -147,17 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed9feccd82c50b429c8e16c560f2962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3
   moveSpeedMultiplier: 1
   defaultMoveSpeedMultiplier: 1
-  playerHealth: 10000
-  dashSpeed: 0
+  playerHealth: 1000
+  dashSpeed: 2
   isShielded: 0
   isAlive: 0
   isGod: 0
   powerUp: {fileID: 0}
-  dmgText: {fileID: 0}
-  hitSfx: {fileID: 0}
+  dmgText: {fileID: 4052177579897196977, guid: 319c59c918eb0d649946eb5cc6cb67fd, type: 3}
 --- !u!95 &-1791504399991546340
 Animator:
   serializedVersion: 4

@@ -805,7 +805,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742665263}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -68430,20 +68430,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440461, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: isGod
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: DmgText
-      value: 
-      objectReference: {fileID: 4052177579897196977, guid: 319c59c918eb0d649946eb5cc6cb67fd, type: 3}
-    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: dmgText
       value: 
       objectReference: {fileID: 4052177579897196977, guid: 319c59c918eb0d649946eb5cc6cb67fd, type: 3}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
@@ -68451,20 +68439,12 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: dashSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: bulletSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: playerHealth
-      value: 1000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: collisionOffset
@@ -68497,30 +68477,6 @@ PrefabInstance:
     - target: {fileID: 742910792799440462, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
       propertyPath: movementFilter.layerMask.m_Bits
       value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_Mass
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: d8f53547abe713e43aea1b95e52ae2df, type: 2}
-    - target: {fileID: 742910792799440463, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5669565237582397458, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_Size.y
-      value: 0.3210066
-      objectReference: {fileID: 0}
-    - target: {fileID: 5669565237582397458, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.00028325617
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 478e516aff56cd2478715e483b8f44db, type: 3}
