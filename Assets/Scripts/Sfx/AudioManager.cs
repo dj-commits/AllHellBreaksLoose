@@ -100,4 +100,14 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public Sound getSoundByName(string name)
+    {
+        foreach(Sound s in sounds)
+        {
+            if (s.name == name)
+                return s;
+        }
+        return null;
+    }
 }

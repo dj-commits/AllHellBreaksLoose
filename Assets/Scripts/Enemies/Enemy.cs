@@ -51,6 +51,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected List<GameObject> lootTable;
     protected Animator animator;
+    [SerializeField]
+    float timeUntilAttackFinished;
+
 
     AudioManager audioManager;
 
@@ -119,7 +122,7 @@ public class Enemy : MonoBehaviour
         if (!CheckAttackRange(other))
         {
             isStopped = false;
-            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, other.transform.position, moveSpeed * Time.deltaTime);
             animator.SetBool("IsMoving", true);
             StartCoroutine(TimeBetweenStalkTimer());
         }
@@ -138,7 +141,6 @@ public class Enemy : MonoBehaviour
         animator.SetBool("IsMoving", false);
         isStopped = true;
         StartCoroutine(TimeUntilNextStalkTimer());
-
     }
 
     public virtual void TakeDamage(float damage)
@@ -150,12 +152,16 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log("Attacking: " + gameObject.name);
         other.GetComponent<PlayerController>().TakeDamage(damage);
+        animator.SetBool("IsAttacking", true);
+        StartCoroutine(AttackAnimTimer());
         canAttack = false;
-
     }
 
-
-    
+    IEnumerator AttackAnimTimer()
+    {
+        yield return new WaitForSeconds(timeUntilAttackFinished);
+        animator.SetBool("IsAttacking", false);
+    }
 
     IEnumerator TimeUntilNextAttack()
     {

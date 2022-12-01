@@ -99,32 +99,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3fa5d1a256c2d4786d939b38eb7a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   moveSpeedMultiplier: 0
   health: 10
   damage: 10
   isAlive: 0
   attackRange: 0.2
-  dropChance: 0.2
+  dropChance: 0.40000004
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
-  timeBetweenStalk: 1
+  timeBetweenStalk: 2
   timeUntilNextStalk: 1
-  timeUntilNextAttack: 1
+  timeUntilNextAttack: 0.5
   canStalk: 0
   canAttack: 0
   collisionOffset: 0
   lootTable: []
-  deathSfx: {fileID: 4323085961006810297}
-  attackSfx: {fileID: 5076242941781929847}
   timeUntilSpawnFinished: 1
---- !u!82 &4323085961006810297 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1972598245507137927, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
-  m_PrefabInstance: {fileID: 2350523184413476158}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &5076242941781929847 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7416527461492976201, guid: 8d12fbdfda4fb9943abea180e97ab71d, type: 3}
-  m_PrefabInstance: {fileID: 2350523184413476158}
-  m_PrefabAsset: {fileID: 0}

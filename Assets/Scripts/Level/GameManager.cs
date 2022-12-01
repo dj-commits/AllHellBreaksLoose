@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,20 @@ public class GameManager : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            Cursor.visible = true;
+        }
+    }
+
     public void BossSpawnTrigger()
     {
         audioManager.Stop("levelMusic");
+        
+        audioManager.getSoundByName("bossMusic").source.pitch = 0.8f;
         audioManager.Play("bossMusic");
         em.SpawnBoss();
     }

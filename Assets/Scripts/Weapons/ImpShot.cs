@@ -8,16 +8,18 @@ public class ImpShot : MonoBehaviour
     float damage;
 
     [SerializeField] float bulletSpeed;
+
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public float GetBulletSpeed()

@@ -137,15 +137,16 @@ MonoBehaviour:
   dropChanceIncrementValue: 0.1
   timeBetweenStalk: 1.5
   timeUntilNextStalk: 3
-  timeUntilNextAttack: 3
+  timeUntilNextAttack: 1
   canStalk: 0
   canAttack: 0
   collisionOffset: 0
   lootTable: []
+  timeUntilAttackFinished: 1
   bullet: {fileID: 5161597224244225944, guid: a05799ca93a94c246995d9a894cb0dde, type: 3}
   timeUntilShotAnimFinished: 0.8
   timeUntilNextShot: 1
-  shootAttackRange: 1.75
+  shootAttackRange: 3
   canShoot: 0
 --- !u!95 &-3278650902049929052
 Animator:

@@ -167,25 +167,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f38a82cc31cc94a866870535835915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 3
   moveSpeedMultiplier: 0
   health: 750
-  damage: 50
+  damage: 20
   isAlive: 0
   attackRange: 1
   dropChance: 0.05
   defaultDropChance: 0.05
   dropChanceIncrementValue: 0.05
-  timeBetweenStalk: 3
-  timeUntilNextStalk: 3
+  timeBetweenStalk: 2
+  timeUntilNextStalk: 1
   timeUntilNextAttack: 3
   canStalk: 0
   canAttack: 0
   collisionOffset: 0
   lootTable: []
+  timeUntilAttackFinished: 1
   skullEnemy: {fileID: 3561234262390977222, guid: a329ced1ca514964fb57e080e7b8d7be, type: 3}
   summonSpawnPos: []
-  summonRange: 3
-  timeUntilNextSummon: 1
-  timeUntilSummonAnimFinished: 0
+  summonRange: 4
+  timeUntilNextSummon: 5
+  timeUntilSummonAnimFinished: 1
   canSummon: 0
+  summonEnemyCount: 30
