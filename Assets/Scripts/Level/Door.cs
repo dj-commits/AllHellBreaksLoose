@@ -15,6 +15,8 @@ public class Door : MonoBehaviour
 
     AudioManager audioManager;
 
+    private Animator doorAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class Door : MonoBehaviour
         finalDoorPos = new Vector3(transform.position.x, transform.position.y + doorOpenYOffset, transform.position.z);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         em = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        doorAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,13 +40,24 @@ public class Door : MonoBehaviour
         
         if (!isLocked && !isOpen)
         {
-            transform.position = Vector3.MoveTowards(transform.position, finalDoorPos, Time.deltaTime / 2);
-
+            OpenningDoor();
         }
         if(transform.position == finalDoorPos && !isOpen)
         {
             isOpen = true;
         }
+    }
+
+    public void OpenningDoor()
+    {
+        doorAnimator.SetBool("isOpenning", true);
+        StartCoroutine(OpenningDoorTimer());
+    }
+
+    IEnumerator OpenningDoorTimer()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 
     public bool GetDoorLockStatus()
