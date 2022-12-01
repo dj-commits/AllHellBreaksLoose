@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f38a82cc31cc94a866870535835915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2.5
   moveSpeedMultiplier: 0
-  health: 600
+  health: 750
   damage: 50
   isAlive: 0
   attackRange: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
   lootTable: []
   skullEnemy: {fileID: 3561234262390977222, guid: a329ced1ca514964fb57e080e7b8d7be, type: 3}
   summonSpawnPos: []
-  summonRange: 4
-  timeUntilNextSummon: 5
+  summonRange: 3
+  timeUntilNextSummon: 1
   timeUntilSummonAnimFinished: 0
   canSummon: 0

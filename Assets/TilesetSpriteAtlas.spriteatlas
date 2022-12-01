@@ -130,6 +130,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e3e530dbf9b3f4641b2584a007390b63, type: 3}
   - {fileID: 21300000, guid: f4638a7c675c99748bffdfcf5d0c9a17, type: 3}
   - {fileID: 21300000, guid: 8b99b79cb5aa6af4d9ba7791ad52b30a, type: 3}
+  - {fileID: 21300000, guid: 84b7a6bc24e15fc498e162c043d94709, type: 3}
   - {fileID: 21300000, guid: 2ee903fc42f642149915d0bba1f0afc2, type: 3}
   - {fileID: 21300000, guid: bca294fc2a1a6d64c9cfa32e9a9f909a, type: 3}
   - {fileID: 21300000, guid: 12f5718d8203b944cac44420f5b3369f, type: 3}
@@ -225,6 +226,7 @@ SpriteAtlas:
   - bossdoor55
   - bossdoor17
   - bossdoor42
+  - victory
   - bossdoor22
   - bossdoor21
   - bossdoor57

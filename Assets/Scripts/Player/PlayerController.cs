@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool isShielded;
 
+    [SerializeField]
+    float timeUntilDeathAnimFinished;
+
     [SerializeField] public bool isAlive;
     [SerializeField] private bool isGod;
 
@@ -63,10 +66,12 @@ public class PlayerController : MonoBehaviour
         // check for playerDeath
         if (playerHealth <= 0)
         {
-            isAlive = false;
-            GameObject.Find("UIManager").GetComponent<UIManager>().ActivateGameOverMenu();
-            this.gameObject.SetActive(false);
+            playerAnimator.SetBool("isDying", true);
+            SpriteRenderer gunSprite = gun.gameObject.GetComponent<SpriteRenderer>();
+            gunSprite.enabled = false;
+            StartCoroutine(DeathAnimTimer());
             return;
+
         }
 
             // Shooting
@@ -110,6 +115,16 @@ public class PlayerController : MonoBehaviour
         {
             //playerAnimator.SetBool("isMoving", false);
         }
+
+    }
+
+    IEnumerator DeathAnimTimer()
+    {
+        yield return new WaitForSeconds(timeUntilDeathAnimFinished);
+        playerAnimator.SetBool("isDying", false);
+        isAlive = false;
+        GameObject.Find("UIManager").GetComponent<UIManager>().ActivateGameOverMenu();
+        //this.gameObject.SetActive(false);
 
     }
 

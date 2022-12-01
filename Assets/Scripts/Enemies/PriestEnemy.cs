@@ -17,6 +17,7 @@ public class PriestEnemy : Enemy
     [SerializeField]
     bool canSummon;
 
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -33,6 +34,13 @@ public class PriestEnemy : Enemy
             Summon(skullEnemy);
             canSummon = false;
         }
+    }
+
+    public override void Death()
+    {
+        base.Death();
+        uiManager.ActivateVictoryScreen();
+        
     }
 
     public void Summon(GameObject summon)
@@ -55,7 +63,6 @@ public class PriestEnemy : Enemy
         canSummon = true;
         
     }
-    
 
     
 }

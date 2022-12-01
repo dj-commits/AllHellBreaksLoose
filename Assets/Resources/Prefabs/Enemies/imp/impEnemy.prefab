@@ -126,13 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ec84cb45204464daa8249440f6605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   moveSpeedMultiplier: 0
-  health: 10
-  damage: 10
+  health: 20
+  damage: 15
   isAlive: 0
   attackRange: 0.2
-  dropChance: 0.5
+  dropChance: 0.1
   defaultDropChance: 0.1
   dropChanceIncrementValue: 0.1
   timeBetweenStalk: 1.5

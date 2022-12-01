@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public float collisionOffset;
 
-
+    protected UIManager uiManager;
     protected GameObject player;
     protected EnemyManager em;
     [SerializeField]
@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

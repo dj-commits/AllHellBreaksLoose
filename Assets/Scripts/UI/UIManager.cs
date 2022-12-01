@@ -16,13 +16,20 @@ public class UIManager : MonoBehaviour
     [Range(.1f, 3f)]
     float yMovement;
 
+    public bool gameOverMenuIsActive;
+    public bool victoryIsActive;
     private GameObject gameOverMenu;
+    private GameObject victoryMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         gameOverMenu = GameObject.Find("GameOver");
         gameOverMenu.SetActive(false);
+        gameOverMenuIsActive = false;
+        victoryMenu = GameObject.Find("VictoryMenu");
+        victoryMenu.SetActive(false);
+        victoryIsActive = false;
     }
 
     // Update is called once per frame
@@ -44,7 +51,19 @@ public class UIManager : MonoBehaviour
 
     public void ActivateGameOverMenu()
     {
-        gameOverMenu.SetActive(true);
+        if (victoryIsActive == false)
+        {
+            gameOverMenu.SetActive(true);
+            gameOverMenuIsActive = true;
+            Cursor.visible = true;
+        }
+
+    }
+
+    public void ActivateVictoryScreen()
+    { 
+        victoryMenu.SetActive(true);
+        victoryIsActive = true;
         Cursor.visible = true;
     }
 
