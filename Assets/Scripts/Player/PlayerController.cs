@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             isAlive = false;
             GameObject.Find("UIManager").GetComponent<UIManager>().ActivateGameOverMenu();
+            this.gameObject.SetActive(false);
             return;
         }
 
