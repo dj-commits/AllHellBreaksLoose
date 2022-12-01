@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ImpShot : MonoBehaviour
 {
+    [SerializeField]
+    float damage;
 
     [SerializeField] float bulletSpeed;
     // Start is called before the first frame update
@@ -25,6 +27,16 @@ public class ImpShot : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Walls")
+        {
+            Destroy(gameObject);
+        }
     }
 }

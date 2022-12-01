@@ -9,7 +9,11 @@ public class ImpEnemy : Enemy
     [SerializeField]
     float timeUntilShotAnimFinished;
     [SerializeField]
+    float timeUntilNextShot;
+    [SerializeField]
     float shootAttackRange;
+    [SerializeField]
+    bool canShoot;
 
 
 
@@ -24,13 +28,21 @@ public class ImpEnemy : Enemy
         //lootTable.Add(dashPowerUp);
         lootTable.Add(gunPowerUp);
         lootTable.Add(shieldPowerup);
+        canShoot = true;
 
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        if (CheckForShootingRange(player) && canShoot && isStopped)
+        {
+            Shoot(player);
+            canShoot = false;
+        }
         base.Update();
+
+
     }
 
     public override void Death()
@@ -41,13 +53,7 @@ public class ImpEnemy : Enemy
 
     public override void Attack(GameObject other)
     {
-        if (CheckForShootingRange(other))
-        {
-            Shoot(other);
-        }else
-        {
-            base.Attack(other);
-        }
+        base.Attack(other);
 
 
     }
@@ -65,6 +71,14 @@ public class ImpEnemy : Enemy
         yield return new WaitForSeconds(timeUntilShotAnimFinished);
         animator.SetBool("IsShooting", false);
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bullet.GetComponent<ImpShot>().GetBulletSpeed();
+        StartCoroutine(TimeUntilNextShotTimer());
+        
+    }
+
+    IEnumerator TimeUntilNextShotTimer()
+    {
+        yield return new WaitForSeconds(timeUntilNextShot);
+        canShoot = true;
     }
 
     public bool CheckForShootingRange(GameObject other)
@@ -73,9 +87,10 @@ public class ImpEnemy : Enemy
         Vector2 heading = other.transform.position - transform.position;
         float distance = heading.magnitude;
 
-        if (distance < shootAttackRange)
+        if (distance <= shootAttackRange && distance >= attackRange)
         {
             return true;
+
         }
         return false;
     }

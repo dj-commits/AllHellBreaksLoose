@@ -144,7 +144,9 @@ MonoBehaviour:
   lootTable: []
   bullet: {fileID: 5161597224244225944, guid: a05799ca93a94c246995d9a894cb0dde, type: 3}
   timeUntilShotAnimFinished: 0.8
+  timeUntilNextShot: 1
   shootAttackRange: 1.75
+  canShoot: 0
 --- !u!95 &-3278650902049929052
 Animator:
   serializedVersion: 4
